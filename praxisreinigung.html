@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praxisreinigung | Reinico Gebäudereinigung</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        .hero-img { width: 100%; height: auto; display: block; }
+        .content-area { max-width: 1000px; margin: 0 auto; padding: 40px 20px; line-height: 1.8; color: #333; }
+        h1.main-title { color: #3b5998; font-size: clamp(1.6rem, 7vw, 2.5rem); margin-bottom: 20px; line-height: 1.2; word-wrap: break-word; }
+        .service-list-simple { list-style: none; padding: 0; margin: 20px 0; }
+        .service-list-simple li { margin-bottom: 10px; font-size: 1.1rem; }
+        .service-list-simple i { color: #3b5998; margin-right: 10px; }
+        .contact-form-section { background: #f4f7fa; padding: 60px 20px; }
+        .contact-form { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; box-sizing: border-box; }
+        .submit-btn { background: #3b5998; color: white; border: none; padding: 15px 30px; border-radius: 5px; cursor: pointer; font-size: 1.1rem; width: 100%; transition: background 0.3s; }
+        .submit-btn:hover { background: #2a4373; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <div class="logo-box">
+            <a href="index.html" class="logo">Reinico <span>Gebäudereinigung</span></a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Startseite</a></li>
+                <li class="has-dropdown">
+                    <a href="#" class="active">Dienstleistungen <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="kehrwoche.html">Kehrwoche</a></li>
+                        <li><a href="winterdienst.html">Winterdienst</a></li>
+                        <li><a href="praxisreinigung.html">Praxisreinigung</a></li>
+                        <li><a href="parkplatzreinigung.html">Parkplatzreinigung</a></li>
+                        <li><a href="gartenpflege.html">Gartenpflege</a></li>
+                        <li><a href="fensterreinigung.html">Fensterreinigung</a></li>
+                        <li><a href="bueroreinigung.html">Büroreinigung</a></li>
+                        <li><a href="grundreinigung.html">Grundreinigung</a></li>
+                        <li><a href="unterhaltsreinigung.html">Unterhaltsreinigung</a></li>
+                        <li><a href="hausmeisterservice.html">Hausmeisterservice</a></li>
+                    </ul>
+                </li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+                <li><a href="jobs.html">Jobs</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<main>
+    <img src="image/praxisreinigung.jpg" alt="Praxisreinigung Reinico" class="hero-img">
+    <section class="content-area">
+        <h1 class="main-title">Professionelle Praxisreinigung</h1>
+        <p>In medizinischen Einrichtungen ist Hygiene das oberste Gebot. Wir sorgen für klinische Sauberkeit in Ihren Praxisräumen, damit sich Ihre Patienten und Ihr Team stets sicher und wohlfühlen.</p>
+        <h2 style="margin-top: 30px; color: #3b5998;">Unsere Leistungen für Praxen:</h2>
+        <ul class="service-list-simple">
+            <li><i class="fas fa-check"></i> Desinfizierende Oberflächenreinigung</li>
+            <li><i class="fas fa-check"></i> Reinigung von Warte- und Behandlungszimmern</li>
+            <li><i class="fas fa-check"></i> Hygienische Bodenreinigung und -pflege</li>
+            <li><i class="fas fa-check"></i> Reinigung von Sanitäranlagen</li>
+            <li><i class="fas fa-check"></i> Fachgerechte Abfallentsorgung</li>
+        </ul>
+    </section>
+    <section class="contact-form-section">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h2 style="color: #3b5998;">Angebot für Praxisreinigung</h2>
+            <p>Senden Sie uns Ihre Anforderungen für ein individuelles Konzept.</p>
+        </div>
+        <form class="contact-form">
+            <div class="form-group"><label for="name">Name / Praxis</label><input type="text" id="name" name="name" placeholder="Ihr Name" required></div>
+            <div class="form-group"><label for="email">E-Mail</label><input type="email" id="email" name="email" placeholder="ihre@email.de" required></div>
+            <div class="form-group"><label for="message">Besonderheiten</label><textarea id="message" name="message" rows="5" placeholder="Praxisgröße, Reinigungsintervalle..."></textarea></div>
+            <button type="submit" class="submit-btn">Anfrage senden</button>
+        </form>
+    </section>
+</main>
+<footer><p>&copy; 2026 Reinico Gebäudereinigung | <a href="impressum.html" style="color: white; text-decoration: none;">Impressum & Datenschutz</a></p></footer>
+</body>
+</html>

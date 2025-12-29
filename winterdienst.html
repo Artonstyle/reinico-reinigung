@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winterdienst | Reinico Gebäudereinigung</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        /* FIX: Bild wird am PC nicht mehr abgeschnitten */
+        .hero-img { 
+            width: 100%; 
+            height: auto; 
+            display: block; 
+        }
+        
+        .content-area { max-width: 1000px; margin: 0 auto; padding: 40px 20px; line-height: 1.8; color: #333; }
+        
+        /* Mobile-Optimierung für die Überschrift */
+        h1.main-title { 
+            color: #3b5998; 
+            font-size: clamp(1.6rem, 7vw, 2.5rem); 
+            margin-bottom: 20px; 
+            line-height: 1.2;
+            word-wrap: break-word; 
+        }
+
+        .service-list-simple { list-style: none; padding: 0; margin: 20px 0; }
+        .service-list-simple li { margin-bottom: 10px; font-size: 1.1rem; }
+        .service-list-simple i { color: #3b5998; margin-right: 10px; }
+        
+        /* Kontaktformular Styling */
+        .contact-form-section { background: #f4f7fa; padding: 60px 20px; }
+        .contact-form { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; box-sizing: border-box; }
+        .submit-btn { background: #3b5998; color: white; border: none; padding: 15px 30px; border-radius: 5px; cursor: pointer; font-size: 1.1rem; width: 100%; transition: background 0.3s; }
+        .submit-btn:hover { background: #2a4373; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo-box">
+            <a href="index.html" class="logo">Reinico <span>Gebäudereinigung</span></a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Startseite</a></li>
+                <li class="has-dropdown">
+                    <a href="#" class="active">Dienstleistungen <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="kehrwoche.html">Kehrwoche</a></li>
+                        <li><a href="winterdienst.html">Winterdienst</a></li>
+                        <li><a href="gartenpflege.html">Gartenpflege</a></li>
+                        <li><a href="fensterreinigung.html">Fensterreinigung</a></li>
+                        <li><a href="bueroreinigung.html">Büroreinigung</a></li>
+                        <li><a href="grundreinigung.html">Grundreinigung</a></li>
+                        <li><a href="unterhaltsreinigung.html">Unterhaltsreinigung</a></li>
+                        <li><a href="hausmeisterservice.html">Hausmeisterservice</a></li>
+                        <li><a href="teppichreinigung.html">Teppichreinigung</a></li>
+                        <li><a href="entruempelung.html">Entrümpelung</a></li>
+                    </ul>
+                </li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+                <li><a href="jobs.html">Jobs</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <img src="image/winterdienst.png" alt="Winterdienst Reinico" class="hero-img">
+
+    <section class="content-area">
+        <h1 class="main-title">Winterdienst</h1>
+        
+        <p>
+            Wenn der erste Schnee fällt, sorgt die Reinico Gebäudereinigung für sichere Wege. Unser professioneller Winterdienst übernimmt für Sie die komplette Räum- und Streupflicht. Wir bedienen sowohl private Haushalte als auch gewerbliche Kunden zuverlässig und pünktlich.
+        </p>
+        
+        <h2 style="margin-top: 30px; color: #3b5998;">Unsere Leistungen auf einen Blick:</h2>
+        <ul class="service-list-simple">
+            <li><i class="fas fa-check"></i> Schneeräumung von Gehwegen und Einfahrten</li>
+            <li><i class="fas fa-check"></i> Räumung großer Parkplatzflächen und Betriebshöfe</li>
+            <li><i class="fas fa-check"></i> Streudienst gegen Glätte (Salz, Splitt oder Sand)</li>
+            <li><i class="fas fa-check"></i> Tägliche Überwachung der Wetterlage</li>
+            <li><i class="fas fa-check"></i> Komplette Haftungsübernahme im Schadensfall</li>
+            <li><i class="fas fa-check"></i> Streugutbeseitigung nach der Wintersaison</li>
+        </ul>
+    </section>
+
+    <section class="contact-form-section">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h2 style="color: #3b5998;">Jetzt Winterdienst anfragen</h2>
+            <p>Senden Sie uns eine Nachricht für ein unverbindliches Angebot.</p>
+        </div>
+        <form class="contact-form">
+            <div class="form-group">
+                <label for="name">Name / Firma</label>
+                <input type="text" id="name" name="name" placeholder="Ihr Name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-Mail Adresse</label>
+                <input type="email" id="email" name="email" placeholder="ihre@email.de" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Nachricht / Objektgröße</label>
+                <textarea id="message" name="message" rows="5" placeholder="Beschreiben Sie kurz Ihr Objekt..." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Anfrage absenden</button>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Reinico Gebäudereinigung | <a href="impressum.html" style="color: white; text-decoration: none;">Impressum & Datenschutz</a></p>
+</footer>
+
+</body>
+</html>
