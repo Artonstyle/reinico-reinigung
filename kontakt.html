@@ -82,7 +82,7 @@
         // Wichtig: Wir senden KEIN target mit, damit das Script weiß: "Das ist die Webseite!"
         fetch(scriptURL, { method: 'POST', body: new FormData(form)})
             .then(response => {
-                msg.innerHTML = "Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet. Wir melden uns 2026 zeitnah bei Ihnen.";
+                msg.innerHTML = "Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet. Wir melden uns zeitnah bei Ihnen.";
                 msg.className = "success";
                 msg.style.display = "block";
                 form.reset();
