@@ -93,7 +93,7 @@
                             <input type="email" name="email" placeholder="E-Mail Adresse" required style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
                         </div>
                         <div style="margin-bottom: 15px;">
-                            <input type="tel" name="telefon" placeholder="Telefonnummer (optional)" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
+                            <input type="tel" name="telefon" placeholder="Telefonnummer" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
                         </div>
                         <div style="margin-bottom: 15px;">
                             <select name="leistung" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background: white;" required>
@@ -115,6 +115,8 @@
                         <button type="submit" id="submitBtn" style="width: 100%; padding: 18px; border: none; cursor: pointer; text-transform: uppercase; font-weight: bold; background-color: #3b5998; color: white; border-radius: 8px;">
                             Nachricht absenden
                         </button>
+
+                        <div id="formResponse" style="display:none; margin-top: 20px; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold;"></div>
                     </form>
                 </div>
 
@@ -128,26 +130,34 @@
 </footer>
 
 <script>
-    // DEINE GOOGLE SCRIPT URL HIER EINSETZEN
     const scriptURL = 'https://script.google.com/macros/s/AKfycbywGJPvtLdtmBxw8oKEAKK2bGc6W9rV_N77ojiOI-N-mj6v9LqgstThBnjvyRm14VM/exec';
     const form = document.getElementById('kontaktFormular');
     const btn = document.getElementById('submitBtn');
+    const responseMsg = document.getElementById('formResponse');
 
     form.addEventListener('submit', e => {
         e.preventDefault();
         btn.disabled = true;
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> WIRD GESENDET...';
+        responseMsg.style.display = 'none';
 
         fetch(scriptURL, { method: 'POST', body: new FormData(form)})
             .then(response => {
-                alert('Vielen Dank! Ihre Nachricht an Reinico Gebäudereinigung wurde erfolgreich versendet.');
+                responseMsg.innerText = 'Vielen Dank! Ihre Nachricht wurde erfolgreich versendet.';
+                responseMsg.style.backgroundColor = '#dcfce7'; // Grün
+                responseMsg.style.color = '#166534';
+                responseMsg.style.display = 'block';
+                
                 btn.disabled = false;
                 btn.innerText = 'NACHRICHT ABSENDEN';
                 form.reset();
             })
             .catch(error => {
-                console.error('Fehler!', error.message);
-                alert('Fehler beim Senden! Bitte versuchen Sie es erneut.');
+                responseMsg.innerText = 'Fehler beim Senden! Bitte versuchen Sie es erneut.';
+                responseMsg.style.backgroundColor = '#fee2e2'; // Rot
+                responseMsg.style.color = '#991b1b';
+                responseMsg.style.display = 'block';
+                
                 btn.disabled = false;
                 btn.innerText = 'NACHRICHT ABSENDEN';
             });
