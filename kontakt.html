@@ -3,231 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontakt & Angebot | REINICO 2026</title>
+    <title>Kontakt | Reinico Gebäudereinigung</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    <style>
-        :root {
-            --primary: #0f172a;
-            --accent: #3b82f6;
-            --success: #22c55e;
-            --bg: #f8fafc;
-            --text: #1e293b;
-        }
-
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .contact-card {
-            background: white;
-            width: 100%;
-            max-width: 550px;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            margin: 20px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-            color: var(--primary);
-            letter-spacing: 1px;
-        }
-
-        .header p {
-            color: #64748b;
-            font-size: 0.95rem;
-            margin-top: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--primary);
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            font-size: 1rem;
-            box-sizing: border-box;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        .btn-submit {
-            width: 100%;
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 16px;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-submit:hover {
-            background-color: #2563eb;
-        }
-
-        .btn-submit:disabled {
-            background-color: #94a3b8;
-            cursor: not-allowed;
-        }
-
-        #status-msg {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            display: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .msg-success {
-            background-color: #dcfce7;
-            color: #166534;
-            border: 1px solid #bbf7d0;
-        }
-
-        .msg-error {
-            background-color: #fee2e2;
-            color: #991b1b;
-            border: 1px solid #fecaca;
-        }
-
-        .footer-info {
-            text-align: center;
-            margin-top: 25px;
-            font-size: 0.8rem;
-            color: #94a3b8;
-        }
-    </style>
 </head>
 <body>
 
-<div class="contact-card">
-    <div class="header">
-        <h1>REINICO <span style="color:var(--accent)">PRO</span></h1>
-        <p>Angebot unverbindlich anfordern</p>
+<header>
+    <div class="header-container">
+        <div class="logo-box">
+            <a href="index.html" class="logo">Reinico <span>Gebäudereinigung</span></a>
+        </div>
+        
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Startseite</a></li>
+                <li class="has-dropdown">
+                    <a href="#">Dienstleistungen <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="kehrwoche.html">Kehrwoche</a></li>
+                        <li><a href="winterdienst.html">Winterdienst</a></li>
+                        <li><a href="praxisreinigung.html">Praxisreinigung</a></li>
+                        <li><a href="parkplatzreinigung.html">Parkplatzreinigung</a></li>
+                        <li><a href="gartenpflege.html">Gartenpflege</a></li>
+                        <li><a href="fensterreinigung.html">Fensterreinigung</a></li>
+                        <li><a href="bueroreinigung.html">Büroreinigung</a></li>
+                        <li><a href="grundreinigung.html">Grundreinigung</a></li>
+                        <li><a href="unterhaltsreinigung.html">Unterhaltsreinigung</a></li>
+                        <li><a href="hausmeisterservice.html">Hausmeisterservice</a></li>
+                        <li><a href="teppichreinigung.html">Teppichreinigung</a></li>
+                        <li><a href="entruempelung.html">Entrümpelung</a></li>
+                    </ul>
+                </li>
+                <li><a href="kontakt.html" class="active">Kontakt</a></li>
+                <li><a href="jobs.html">Jobs</a></li>
+            </ul>
+        </nav>
     </div>
+</header>
 
-    <form id="contactForm">
-        <div class="form-group">
-            <label><i class="fas fa-user"></i> Name</label>
-            <input type="text" name="name" placeholder="Ihr Name / Firma" required>
+<main>
+    <section class="section-padding" style="padding: 60px 0;">
+        <div style="max-width: 1000px; margin: 0 auto; padding: 0 15px;">
+            
+            <h1 style="color: #3b5998; text-align: center; margin-bottom: 40px; font-size: 2.5rem;">Kontaktieren Sie uns</h1>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
+                
+                <div style="flex: 1; min-width: 300px; background: #f4f7fa; padding: 40px; border-radius: 15px; border-left: 5px solid #3b5998;">
+                    <h2 style="margin-bottom: 25px; color: #333;">Ihre Direkthilfe</h2>
+                    
+                    <div style="margin-bottom: 20px; display: flex; align-items: center;">
+                        <i class="fas fa-phone" style="font-size: 1.5rem; color: #3b5998; margin-right: 20px;"></i>
+                        <div>
+                            <p style="font-weight: bold; margin: 0;">Telefon</p>
+                            <a href="tel:+49123456789" style="text-decoration: none; color: #333;">0123 / 456 789</a>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 20px; display: flex; align-items: center;">
+                        <i class="fas fa-envelope" style="font-size: 1.5rem; color: #3b5998; margin-right: 20px;"></i>
+                        <div>
+                            <p style="font-weight: bold; margin: 0;">E-Mail</p>
+                            <a href="mailto:reinico.gebaeudereinigung@gmx.de" style="text-decoration: none; color: #333;">reinico.gebaeudereinigung@gmx.de</a>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 20px; display: flex; align-items: center;">
+                        <i class="fas fa-map-marker-alt" style="font-size: 1.5rem; color: #3b5998; margin-right: 20px;"></i>
+                        <div>
+                            <p style="font-weight: bold; margin: 0;">Standort</p>
+                            <p style="margin: 0;">Baden-Württemberg & Umgebung</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
+                        <p style="font-style: italic; color: #666;">Wir sind montags bis freitags von 08:00 bis 18:00 Uhr für Sie erreichbar.</p>
+                    </div>
+                </div>
+
+                <div style="flex: 1; min-width: 300px; background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border: 1px solid #eee;">
+                    <h2 style="margin-bottom: 25px; color: #3b5998;">Schreiben Sie uns</h2>
+                    
+                    <form id="kontaktFormular">
+                        <div style="margin-bottom: 15px;">
+                            <input type="text" name="name" placeholder="Ihr Name" required style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <input type="email" name="email" placeholder="E-Mail Adresse" required style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <input type="tel" name="telefon" placeholder="Telefonnummer (optional)" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <select name="leistung" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background: white;" required>
+                                <option value="">Was interessiert Sie?</option>
+                                <option value="Kehrwoche">Kehrwoche</option>
+                                <option value="Winterdienst">Winterdienst</option>
+                                <option value="Praxisreinigung">Praxisreinigung</option>
+                                <option value="Parkplatzreinigung">Parkplatzreinigung</option>
+                                <option value="Gartenpflege">Gartenpflege</option>
+                                <option value="Büroreinigung">Büroreinigung</option>
+                                <option value="Hausmeisterservice">Hausmeisterservice</option>
+                                <option value="Sonstiges">Sonstiges</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <textarea name="nachricht" placeholder="Ihre Nachricht an uns..." required style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; min-height: 120px; font-family: sans-serif;"></textarea>
+                        </div>
+                        
+                        <button type="submit" id="submitBtn" style="width: 100%; padding: 18px; border: none; cursor: pointer; text-transform: uppercase; font-weight: bold; background-color: #3b5998; color: white; border-radius: 8px;">
+                            Nachricht absenden
+                        </button>
+                    </form>
+                </div>
+
+            </div>
         </div>
+    </section>
+</main>
 
-        <div class="form-group">
-            <label><i class="fas fa-envelope"></i> E-Mail Adresse</label>
-            <input type="email" name="email" placeholder="ihre-mail@beispiel.de" required>
-        </div>
-
-        <div class="form-group">
-            <label><i class="fas fa-phone"></i> Telefonnummer</label>
-            <input type="tel" name="telefon" placeholder="Für Rückfragen (optional)">
-        </div>
-
-        <div class="form-group">
-            <label><i class="fas fa-concierge-bell"></i> Gewünschte Leistung</label>
-            <select name="leistung">
-                <option value="Unterhaltsreinigung">Unterhaltsreinigung</option>
-                <option value="Glasreinigung">Glasreinigung</option>
-                <option value="Büroreinigung">Büroreinigung</option>
-                <option value="Sonderreinigung">Sonderreinigung / Sonstiges</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label><i class="fas fa-comment-alt"></i> Nachricht</label>
-            <textarea name="nachricht" rows="4" placeholder="Wie können wir Ihnen helfen?"></textarea>
-        </div>
-
-        <button type="submit" class="btn-submit" id="submitBtn">
-            <i class="fas fa-paper-plane"></i> Jetzt Anfrage senden
-        </button>
-    </form>
-
-    <div id="status-msg"></div>
-
-    <div class="footer-info">
-        &copy; 2026 REINICO Reinigungsservice | Arton Kelmendi
-    </div>
-</div>
+<footer>
+    <p>&copy; 2026 Reinico Gebäudereinigung | <a href="impressum.html" style="color: white; text-decoration: none;">Impressum & Datenschutz</a></p>
+</footer>
 
 <script>
-    // DEINE AKTUALISIERTE SCRIPT-URL
+    // DEINE GOOGLE SCRIPT URL HIER EINSETZEN
     const scriptURL = 'https://script.google.com/macros/s/AKfycbzh-BJpEac8MuU-CvBboiH4mLG5Z2QcoCV-iYJsRmqtPrJZaiPwQB_aAa-RXPzh_Qg/exec';
-    
-    const form = document.getElementById('contactForm');
+    const form = document.getElementById('kontaktFormular');
     const btn = document.getElementById('submitBtn');
-    const status = document.getElementById('status-msg');
 
     form.addEventListener('submit', e => {
         e.preventDefault();
-        
-        // Button sperren und Feedback geben
         btn.disabled = true;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Wird gesendet...';
-        
-        // Daten sammeln
-        const formData = new FormData(form);
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> WIRD GESENDET...';
 
-        // Fetch-Anfrage an Google Apps Script
-        fetch(scriptURL, { 
-            method: 'POST', 
-            body: formData 
-        })
-        .then(response => {
-            status.innerHTML = "Vielen Dank! Ihre Anfrage wurde erfolgreich übermittelt. Wir melden uns zeitnah bei Ihnen.";
-            status.className = "msg-success";
-            status.style.display = "block";
-            form.reset();
-        })
-        .catch(error => {
-            status.innerHTML = "Ups! Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt.";
-            status.className = "msg-error";
-            status.style.display = "block";
-            console.error('Error!', error.message);
-        })
-        .finally(() => {
-            btn.disabled = false;
-            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Jetzt Anfrage senden';
-        });
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert('Vielen Dank! Ihre Nachricht an Reinico wurde erfolgreich versendet und im Dashboard gespeichert.');
+                btn.disabled = false;
+                btn.innerText = 'NACHRICHT ABSENDEN';
+                form.reset();
+            })
+            .catch(error => {
+                console.error('Fehler!', error.message);
+                alert('Fehler beim Senden! Bitte versuchen Sie es erneut.');
+                btn.disabled = false;
+                btn.innerText = 'NACHRICHT ABSENDEN';
+            });
     });
 </script>
 
