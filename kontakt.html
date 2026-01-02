@@ -3,116 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontaktformular | Reinico 2026</title>
+    <title>Kontakt & Angebot | REINICO 2026</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
-        :root { --primary: #0f172a; --accent: #3b82f6; --text: #1e293b; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8fafc; color: var(--text); padding: 20px; }
-        
-        .contact-container { max-width: 500px; margin: 40px auto; background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        h2 { margin-top: 0; color: var(--primary); text-align: center; }
-        p { text-align: center; color: #64748b; margin-bottom: 30px; }
+        :root {
+            --primary: #0f172a;
+            --accent: #3b82f6;
+            --success: #22c55e;
+            --bg: #f8fafc;
+            --text: #1e293b;
+        }
 
-        .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
-        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; box-sizing: border-box; font-size: 1rem; outline: none; transition: border 0.3s; }
-        input:focus, select:focus, textarea:focus { border-color: var(--accent); }
-        
-        .btn-send { width: 100%; background: var(--accent); color: white; border: none; padding: 15px; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .btn-send:hover { background: #2563eb; }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-        #response-msg { margin-top: 20px; text-align: center; display: none; padding: 15px; border-radius: 8px; }
-        .success { background: #dcfce7; color: #166534; }
-        .error { background: #fee2e2; color: #991b1b; }
+        .contact-card {
+            background: white;
+            width: 100%;
+            max-width: 550px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            margin: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-top: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #2563eb;
+        }
+
+        .btn-submit:disabled {
+            background-color: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        #status-msg {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .msg-success {
+            background-color: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+
+        .msg-error {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .footer-info {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
     </style>
 </head>
 <body>
 
-<div class="contact-container">
-    <h2>Angebot anfordern</h2>
-    <p>Hinterlassen Sie uns eine Nachricht, wir melden uns umgehend bei Ihnen.</p>
+<div class="contact-card">
+    <div class="header">
+        <h1>REINICO <span style="color:var(--accent)">PRO</span></h1>
+        <p>Angebot unverbindlich anfordern</p>
+    </div>
 
-    <form id="webContactForm">
+    <form id="contactForm">
         <div class="form-group">
-            <label>Name</label>
-            <input type="text" name="name" placeholder="Ihr vollständiger Name" required>
+            <label><i class="fas fa-user"></i> Name</label>
+            <input type="text" name="name" placeholder="Ihr Name / Firma" required>
         </div>
 
         <div class="form-group">
-            <label>E-Mail Adresse</label>
-            <input type="email" name="email" placeholder="beispiel@mail.de" required>
+            <label><i class="fas fa-envelope"></i> E-Mail Adresse</label>
+            <input type="email" name="email" placeholder="ihre-mail@beispiel.de" required>
         </div>
 
         <div class="form-group">
-            <label>Telefonnummer</label>
-            <input type="tel" name="telefon" placeholder="Für unseren Rückruf">
+            <label><i class="fas fa-phone"></i> Telefonnummer</label>
+            <input type="tel" name="telefon" placeholder="Für Rückfragen (optional)">
         </div>
 
         <div class="form-group">
-            <label>Gewünschte Leistung</label>
+            <label><i class="fas fa-concierge-bell"></i> Gewünschte Leistung</label>
             <select name="leistung">
                 <option value="Unterhaltsreinigung">Unterhaltsreinigung</option>
                 <option value="Glasreinigung">Glasreinigung</option>
                 <option value="Büroreinigung">Büroreinigung</option>
-                <option value="Sonderreinigung">Sonderreinigung</option>
+                <option value="Sonderreinigung">Sonderreinigung / Sonstiges</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label>Ihre Nachricht</label>
+            <label><i class="fas fa-comment-alt"></i> Nachricht</label>
             <textarea name="nachricht" rows="4" placeholder="Wie können wir Ihnen helfen?"></textarea>
         </div>
 
-        <button type="submit" class="btn-send" id="submitBtn">Anfrage jetzt senden</button>
+        <button type="submit" class="btn-submit" id="submitBtn">
+            <i class="fas fa-paper-plane"></i> Jetzt Anfrage senden
+        </button>
     </form>
 
-    <div id="response-msg"></div>
+    <div id="status-msg"></div>
+
+    <div class="footer-info">
+        &copy; 2026 REINICO Reinigungsservice | Arton Kelmendi
+    </div>
 </div>
 
 <script>
+    // DEINE AKTUALISIERTE SCRIPT-URL
     const scriptURL = 'https://script.google.com/macros/s/AKfycbwLjrfRRoE1UUUtxygn1zLQD0J0uSzzBChayHgzzZuw0F-fr9mUQBxBNuhibCEvRv4/exec';
-    const form = document.getElementById('webContactForm');
-    const msg = document.getElementById('response-msg');
+    
+    const form = document.getElementById('contactForm');
     const btn = document.getElementById('submitBtn');
+    const status = document.getElementById('status-msg');
 
     form.addEventListener('submit', e => {
         e.preventDefault();
-        btn.disabled = true;
-        btn.innerText = 'Wird gesendet...';
         
-        // Wichtig: Wir senden KEIN target mit, damit das Script weiß: "Das ist die Webseite!"
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => {
-                msg.innerHTML = "Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet. Wir melden uns zeitnah bei Ihnen.";
-                msg.className = "success";
-                msg.style.display = "block";
-                form.reset();
-                btn.disabled = false;
-                btn.innerText = 'Anfrage jetzt senden';
-            })
-            .catch(error => {
-                msg.innerHTML = "Fehler beim Senden. Bitte versuchen Sie es erneut.";
-                msg.className = "error";
-                msg.style.display = "block";
-                btn.disabled = false;
-                btn.innerText = 'Anfrage jetzt senden';
-            });
-    });
-</script>
+        // Button sperren und Feedback geben
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Wird gesendet...';
+        
+        // Daten sammeln
+        const formData = new FormData(form);
 
-</body>
-</html>
-                statusBox.style.display = "block";
-                btn.disabled = false;
-                btn.innerText = "NACHRICHT ABSENDEN";
-                form.reset();
-            })
-            .catch(error => {
-                statusBox.innerText = "Fehler beim Senden. Bitte versuchen Sie es erneut.";
-                statusBox.className = "status-error";
-                statusBox.style.display = "block";
-                btn.disabled = false;
-                btn.innerText = "ERNEUT VERSUCHEN";
-            });
+        // Fetch-Anfrage an Google Apps Script
+        fetch(scriptURL, { 
+            method: 'POST', 
+            body: formData 
+        })
+        .then(response => {
+            status.innerHTML = "Vielen Dank! Ihre Anfrage wurde erfolgreich übermittelt. Wir melden uns zeitnah bei Ihnen.";
+            status.className = "msg-success";
+            status.style.display = "block";
+            form.reset();
+        })
+        .catch(error => {
+            status.innerHTML = "Ups! Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt.";
+            status.className = "msg-error";
+            status.style.display = "block";
+            console.error('Error!', error.message);
+        })
+        .finally(() => {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Jetzt Anfrage senden';
+        });
     });
 </script>
 
