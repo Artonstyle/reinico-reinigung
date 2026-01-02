@@ -3,107 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontakt | Reinico Gebäudereinigung</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <title>Kontaktformular | Reinico 2026</title>
     <style>
-        #status-message {
-            display: none;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: bold;
-        }
-        .status-success { background-color: #dcfce7; color: #166534; border: 1px solid #166534; }
-        .status-error { background-color: #fee2e2; color: #991b1b; border: 1px solid #991b1b; }
-        button:disabled { background-color: #ccc !important; cursor: not-allowed; }
+        :root { --primary: #0f172a; --accent: #3b82f6; --text: #1e293b; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8fafc; color: var(--text); padding: 20px; }
+        
+        .contact-container { max-width: 500px; margin: 40px auto; background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        h2 { margin-top: 0; color: var(--primary); text-align: center; }
+        p { text-align: center; color: #64748b; margin-bottom: 30px; }
+
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; box-sizing: border-box; font-size: 1rem; outline: none; transition: border 0.3s; }
+        input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+        
+        .btn-send { width: 100%; background: var(--accent); color: white; border: none; padding: 15px; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-send:hover { background: #2563eb; }
+
+        #response-msg { margin-top: 20px; text-align: center; display: none; padding: 15px; border-radius: 8px; }
+        .success { background: #dcfce7; color: #166534; }
+        .error { background: #fee2e2; color: #991b1b; }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="header-container">
-        <div class="logo-box">
-            <a href="index.html" class="logo" style="text-decoration:none;">Reinico <span style="color: #666; font-weight: normal;">Gebäudereinigung</span></a>
+<div class="contact-container">
+    <h2>Angebot anfordern</h2>
+    <p>Hinterlassen Sie uns eine Nachricht, wir melden uns umgehend bei Ihnen.</p>
+
+    <form id="webContactForm">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Ihr vollständiger Name" required>
         </div>
-        <nav>
-            <ul class="nav-links" style="list-style: none; display: flex; gap: 20px; margin: 0; padding: 0;">
-                <li><a href="index.html" style="text-decoration:none; color: #333;">Startseite</a></li>
-                <li><a href="kontakt.html" style="text-decoration:none; color: #3b5998; font-weight: bold;">Kontakt</a></li>
-                <li><a href="jobs.html" style="text-decoration:none; color: #333;">Jobs</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
 
-<main>
-    <section style="padding: 60px 0;">
-        <div style="max-width: 1000px; margin: 0 auto; padding: 0 15px;">
-            <h1 style="color: #3b5998; text-align: center; margin-bottom: 40px; font-size: 2.5rem;">Kontaktieren Sie uns</h1>
-
-            <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
-                <div style="flex: 1; min-width: 300px; background: #f4f7fa; padding: 40px; border-radius: 15px; border-left: 5px solid #3b5998;">
-                    <h2 style="margin-bottom: 25px;">Ihre Direkthilfe</h2>
-                    <p><strong>Telefon:</strong> 0123 / 456 789</p>
-                    <p><strong>E-Mail:</strong> info@reinico.de</p>
-                    <p><strong>Standort:</strong> Musterstraße 1, 12345 Stadt</p>
-                </div>
-
-                <div style="flex: 1; min-width: 300px; background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border: 1px solid #eee;">
-                    <h2 style="margin-bottom: 25px; color: #3b5998;">Angebot anfordern</h2>
-                    
-                    <form id="contact-form">
-                        <input type="text" name="name" placeholder="Ihr Name *" required style="width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px;">
-                        <input type="email" name="email" placeholder="E-Mail Adresse *" required style="width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px;">
-                        <input type="tel" name="tel" placeholder="Telefonnummer" style="width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px;">
-                        
-                        <select name="service" required style="width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; background: white;">
-                            <option value="">Leistung wählen... *</option>
-                            <option value="Kehrwoche">Kehrwoche</option>
-                            <option value="Winterdienst">Winterdienst</option>
-                            <option value="Gartenpflege">Gartenpflege</option>
-                            <option value="Fensterreinigung">Fensterreinigung</option>
-                            <option value="Büroreinigung">Büroreinigung</option>
-                            <option value="Praxisreinigung">Praxisreinigung</option>
-                            <option value="Entrümpelung">Entrümpelung</option>
-                            <option value="Sonstiges">Sonstiges</option>
-                        </select>
-
-                        <textarea name="message" placeholder="Ihre Nachricht..." required style="width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; min-height: 120px;"></textarea>
-                        
-                        <button type="submit" id="submit-btn" style="width: 100%; padding: 18px; border: none; cursor: pointer; background-color: #3b5998; color: white; border-radius: 8px; font-weight: bold;">
-                            NACHRICHT ABSENDEN
-                        </button>
-                    </form>
-                    <div id="status-message"></div>
-                </div>
-            </div>
+        <div class="form-group">
+            <label>E-Mail Adresse</label>
+            <input type="email" name="email" placeholder="beispiel@mail.de" required>
         </div>
-    </section>
-</main>
 
-<footer>
-    <div style="text-align: center; padding: 20px; background: #222; color: white;">
-        <p>&copy; 2026 Reinico Gebäudereinigung</p>
-    </div>
-</footer>
+        <div class="form-group">
+            <label>Telefonnummer</label>
+            <input type="tel" name="telefon" placeholder="Für unseren Rückruf">
+        </div>
+
+        <div class="form-group">
+            <label>Gewünschte Leistung</label>
+            <select name="leistung">
+                <option value="Unterhaltsreinigung">Unterhaltsreinigung</option>
+                <option value="Glasreinigung">Glasreinigung</option>
+                <option value="Büroreinigung">Büroreinigung</option>
+                <option value="Sonderreinigung">Sonderreinigung</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Ihre Nachricht</label>
+            <textarea name="nachricht" rows="4" placeholder="Wie können wir Ihnen helfen?"></textarea>
+        </div>
+
+        <button type="submit" class="btn-send" id="submitBtn">Anfrage jetzt senden</button>
+    </form>
+
+    <div id="response-msg"></div>
+</div>
 
 <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxBG66LzBsXLzmEqMnDtI3HZg4kI4S2kw8MYXBXHGV5QtBzPXexP6-GsBb4tzvkKnY/exec';
-    const form = document.getElementById('contact-form');
-    const btn = document.getElementById('submit-btn');
-    const statusBox = document.getElementById('status-message');
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwnyWMaJPRuVNNtTEtwHPyQocGds4CzmmgHl-rUvnML241_Nxr9QyH_nVrehVEL5vA/exec';
+    const form = document.getElementById('webContactForm');
+    const msg = document.getElementById('response-msg');
+    const btn = document.getElementById('submitBtn');
 
     form.addEventListener('submit', e => {
         e.preventDefault();
         btn.disabled = true;
-        btn.innerText = "Wird gesendet...";
-
+        btn.innerText = 'Wird gesendet...';
+        
+        // Wichtig: Wir senden KEIN target mit, damit das Script weiß: "Das ist die Webseite!"
         fetch(scriptURL, { method: 'POST', body: new FormData(form)})
             .then(response => {
-                statusBox.innerText = "Erfolg! Ihre Anfrage wurde in die Tabelle eingetragen.";
-                statusBox.className = "status-success";
+                msg.innerHTML = "Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet. Wir melden uns 2026 zeitnah bei Ihnen.";
+                msg.className = "success";
+                msg.style.display = "block";
+                form.reset();
+                btn.disabled = false;
+                btn.innerText = 'Anfrage jetzt senden';
+            })
+            .catch(error => {
+                msg.innerHTML = "Fehler beim Senden. Bitte versuchen Sie es erneut.";
+                msg.className = "error";
+                msg.style.display = "block";
+                btn.disabled = false;
+                btn.innerText = 'Anfrage jetzt senden';
+            });
+    });
+</script>
+
+</body>
+</html>
                 statusBox.style.display = "block";
                 btn.disabled = false;
                 btn.innerText = "NACHRICHT ABSENDEN";
