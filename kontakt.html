@@ -73,12 +73,13 @@
                         <i class="fas fa-map-marker-alt" style="font-size: 1.5rem; color: #3b5998; margin-right: 20px;"></i>
                         <div>
                             <p style="font-weight: bold; margin: 0;">Standort</p>
-                            <p style="margin: 0;">Baden-Württemberg & Umgebung</p>
+                            <p style="margin: 0;">Max-Mustermann-Str. 35</p>
+                            <p style="margin: 0;">12345 Musterstadt</p>
                         </div>
                     </div>
 
                     <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
-                        <p style="font-style: italic; color: #666;">Wir sind montags bis freitags von 08:00 bis 18:00 Uhr für Sie erreichbar.</p>
+                        <p style="font-style: italic; color: #666;">Wir sind montags bis samstags von 08:00 bis 18:00 Uhr für Sie erreichbar.</p>
                     </div>
                 </div>
 
@@ -151,6 +152,11 @@
                 btn.disabled = false;
                 btn.innerText = 'NACHRICHT ABSENDEN';
                 form.reset();
+
+                // Nachricht nach 4 Sekunden automatisch ausblenden
+                setTimeout(() => {
+                    responseMsg.style.display = 'none';
+                }, 4000);
             })
             .catch(error => {
                 responseMsg.innerText = 'Fehler beim Senden! Bitte versuchen Sie es erneut.';
