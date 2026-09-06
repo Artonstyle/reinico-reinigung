@@ -93,6 +93,17 @@ header {
     border-radius: 0 0 5px 5px;
     padding: 10px 0;
     z-index: 10000;
+    max-height: calc(100vh - 90px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+}
+
+.dropdown::-webkit-scrollbar { width: 9px; }
+.dropdown::-webkit-scrollbar-thumb {
+    background: #9aa9c6;
+    border: 2px solid #fff;
+    border-radius: 10px;
 }
 
 .has-dropdown:hover .dropdown {
