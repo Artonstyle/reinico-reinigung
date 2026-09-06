@@ -88,12 +88,12 @@ header {
     background: var(--white);
     display: none;
     list-style: none;
-    min-width: 230px;
+    width: min(500px, calc(100vw - 30px));
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
     border-radius: 0 0 5px 5px;
     padding: 10px 0;
     z-index: 10000;
-    max-height: calc(100vh - 90px);
+    max-height: 72vh;
     overflow-y: auto;
     overscroll-behavior: contain;
     scrollbar-gutter: stable;
@@ -107,7 +107,8 @@ header {
 }
 
 .has-dropdown:hover .dropdown {
-    display: block;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
 }
 
 .dropdown li a {
@@ -157,7 +158,13 @@ header {
         top: 100%;
         left: 50%;
         transform: translateX(-50%);
-        min-width: 180px;
+        width: min(280px, calc(100vw - 20px));
+        max-height: 68vh;
+        overflow-y: auto;
+    }
+
+    .has-dropdown:hover .dropdown {
+        grid-template-columns: 1fr;
     }
 }
 
