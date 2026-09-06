@@ -21,6 +21,18 @@
             const formData = new FormData(form);
             formData.set('leistung', form.dataset.service || document.title);
 
+            const standardFields = new Set(['name', 'email', 'telefon', 'leistung', 'nachricht']);
+            const additionalDetails = [];
+            for (const [fieldName, fieldValue] of formData.entries()) {
+                if (!standardFields.has(fieldName) && typeof fieldValue === 'string' && fieldValue.trim()) {
+                    additionalDetails.push(`${fieldName}: ${fieldValue.trim()}`);
+                }
+            }
+            const message = String(formData.get('nachricht') || '').trim();
+            if (additionalDetails.length) {
+                formData.set('nachricht', `${additionalDetails.join('\n')}\n\n${message}`);
+            }
+
             try {
                 await fetch(scriptURL, { method: 'POST', body: formData });
                 responseMessage.textContent = 'Vielen Dank! Ihre Anfrage wurde erfolgreich versendet.';
