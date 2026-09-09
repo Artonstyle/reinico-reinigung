@@ -19,6 +19,14 @@
     display: block;
     object-fit: cover;
 }
+.service-hero--full {
+    height: auto;
+    background: #f4f7fa;
+}
+.service-hero--full img {
+    height: auto;
+    object-fit: contain;
+}
 .service-intro p {
     max-width: 800px;
     margin: 20px auto 35px;
@@ -59,5 +67,6 @@
 @media (max-width: 700px) {
     .service-intro { padding: 50px 20px; }
     .service-hero { height: 240px; }
+    .service-hero--full { height: auto; }
     .contact-form { padding: 22px; }
 }
