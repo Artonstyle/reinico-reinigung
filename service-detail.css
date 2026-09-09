@@ -7,7 +7,7 @@
 .service-intro h1, .service-contact h2 { color: #3b5998; }
 .service-hero {
     max-width: 900px;
-    height: 380px;
+    height: auto;
     margin: 30px auto;
     overflow: hidden;
     border-radius: 15px;
@@ -15,16 +15,8 @@
 }
 .service-hero img {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: block;
-    object-fit: cover;
-}
-.service-hero--full {
-    height: auto;
-    background: #f4f7fa;
-}
-.service-hero--full img {
-    height: auto;
     object-fit: contain;
 }
 .service-intro p {
@@ -66,7 +58,5 @@
 .submit-btn:hover { background: #2a4373; }
 @media (max-width: 700px) {
     .service-intro { padding: 50px 20px; }
-    .service-hero { height: 240px; }
-    .service-hero--full { height: auto; }
     .contact-form { padding: 22px; }
 }
