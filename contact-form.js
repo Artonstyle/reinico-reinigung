@@ -1,5 +1,6 @@
 (() => {
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbw4R0jz2dtvAhoKZ6TFTyooKn3KDQAg25QUdve9IxO1R4ypvhZd1HwhIlCusxwIk10/exec';
+    // Vorherige URL für Rückwechsel: https://script.google.com/macros/s/AKfycby2gR3eRqy2Hjs8sMQTrxHIAC_qh-nWoMKlagt7rkYjWUVyBh30MvcGnldLY9mKHcg/exec
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbx4dNOl8-kL2aIAQf1YzHKagmXFFeaD3PCbakgusQeOMB6zEDtLW-nQvctvP0tSlwg/exec';
 
     document.querySelectorAll('form[data-reinico-contact]').forEach(form => {
         const button = form.querySelector('button[type="submit"]');
@@ -19,9 +20,10 @@
             responseMessage.style.display = 'none';
 
             const formData = new FormData(form);
-            formData.set('leistung', form.dataset.service || document.title);
+            formData.set('target', 'Kontaktformular');
+            formData.set('dienstleistung', form.dataset.service || document.title);
 
-            const standardFields = new Set(['name', 'email', 'telefon', 'leistung', 'nachricht']);
+            const standardFields = new Set(['name', 'email', 'telefon', 'dienstleistung', 'nachricht', 'target']);
             const additionalDetails = [];
             for (const [fieldName, fieldValue] of formData.entries()) {
                 if (!standardFields.has(fieldName) && typeof fieldValue === 'string' && fieldValue.trim()) {

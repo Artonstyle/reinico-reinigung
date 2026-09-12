@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Reinico · Anmeldung</title>
+<style> *{box-sizing:border-box}body{margin:0;background:#eef3f9;color:#153758;font:16px system-ui}main{max-width:440px;margin:8vh auto;padding:24px}header{background:#174a7b;color:white;padding:24px;border-radius:16px 16px 0 0}section{background:white;padding:24px;border-radius:0 0 16px 16px}h1{font-size:24px;margin:0}label{display:block;margin:18px 0 6px}input,button{width:100%;font:inherit;padding:13px;border:1px solid #bdcddd;border-radius:9px}button{margin-top:18px;background:#2262a2;color:white;cursor:pointer}button:disabled{opacity:.6}p{line-height:1.5}#state{overflow-wrap:anywhere}small{color:#637891}button.secondary{background:white;color:#2262a2}</style></head>
+<body><main><header><h1>REINICO</h1><p>Mitarbeiter-Anmeldung</p></header><section>
+<form id="login"><label for="email">E-Mail-Adresse</label><input id="email" type="email" autocomplete="username" required value="arton.kelmendi@hotmail.com"><label for="password">Passwort</label><input id="password" type="password" autocomplete="current-password" required><button id="submit">Anmelden</button></form>
+<p id="state" role="status" aria-live="polite">Mit deinem vorhandenen Supabase-Zugang anmelden.</p>
+<button id="logout" class="secondary" hidden>Abmelden</button>
+<small>Die Anmeldung wird zusätzlich in Apps Script geprüft. Das Mitarbeiterportal wird erst nach Absicherung aller Datenzugriffe freigeschaltet.</small>
+</section></main><script>
+const SUPABASE='https://pgcjsyzoukyynkufupms.supabase.co';
+const KEY='sb_publishable_uyKhe83Crckp93AjCrIruw_NAuV16p2';
+const API='https://script.google.com/macros/s/AKfycbx4dNOl8-kL2aIAQf1YzHKagmXFFeaD3PCbakgusQeOMB6zEDtLW-nQvctvP0tSlwg/exec';
+const form=document.getElementById('login'),state=document.getElementById('state'),button=document.getElementById('submit'),logout=document.getElementById('logout');
+// Sitzung vorerst nur im Arbeitsspeicher; kein Passwort/Token in URL oder Browserablage.
+let accessToken=null;
+async function request(url,options){const response=await fetch(url,{...options,signal:AbortSignal.timeout(30000)});const data=await response.json();if(!response.ok)throw Error('Anmeldung nicht möglich. Zugangsdaten und Dienstverfügbarkeit prüfen.');return data}
+form.onsubmit=async event=>{event.preventDefault();button.disabled=true;accessToken=null;state.textContent='Anmeldung wird geprüft …';try{const auth=await request(SUPABASE+'/auth/v1/token?grant_type=password',{method:'POST',headers:{apikey:KEY,'Content-Type':'application/json'},body:JSON.stringify({email:document.getElementById('email').value.trim(),password:document.getElementById('password').value})});document.getElementById('password').value='';if(!auth.access_token)throw Error('Keine gültige Sitzung erhalten.');const check=await request(API,{method:'POST',body:new URLSearchParams({action:'reinico_auth_check',access_token:auth.access_token})});if(check.result!=='success'||check.role!=='admin')throw Error(check.msg||'Apps-Script-Anmeldung noch nicht bereitgestellt.');accessToken=auth.access_token;state.textContent='✓ Erfolgreich angemeldet und serverseitig als Reinico-Administrator bestätigt. Die weiteren Live-Funktionen sind noch nicht freigeschaltet.';form.hidden=true;logout.hidden=false}catch(error){state.textContent=error.name==='TimeoutError'?'Zeitüberschreitung. Bitte Dienst und Apps-Script-Bereitstellung prüfen.':error.message;document.getElementById('password').value=''}finally{button.disabled=false}};
+logout.onclick=async()=>{const token=accessToken;accessToken=null;form.hidden=false;logout.hidden=true;state.textContent='Lokal abgemeldet.';if(token)try{await request(SUPABASE+'/auth/v1/logout?scope=local',{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+token}});state.textContent='Abgemeldet.'}catch{state.textContent='Lokal abgemeldet. Die serverseitige Abmeldung konnte nicht bestätigt werden.'}};
+</script></body></html>
