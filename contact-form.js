@@ -36,8 +36,13 @@
             }
 
             try {
-                await fetch(scriptURL, { method: 'POST', body: formData });
-                responseMessage.textContent = 'Vielen Dank! Ihre Anfrage wurde erfolgreich versendet.';
+                const response = await fetch(scriptURL, { method: 'POST', body: formData });
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                const result = await response.json();
+                if (result.result !== 'success') throw new Error(result.msg || 'Keine Speicherbestätigung erhalten.');
+                responseMessage.textContent = result.notifications && (!result.notifications.admin || !result.notifications.customer)
+                    ? 'Vielen Dank! Ihre Anfrage wurde gespeichert. Der E-Mail-Versand konnte noch nicht vollständig bestätigt werden. Bitte senden Sie die Anfrage nicht erneut.'
+                    : 'Vielen Dank! Ihre Anfrage wurde erfolgreich versendet.';
                 responseMessage.style.backgroundColor = '#dcfce7';
                 responseMessage.style.color = '#166534';
                 responseMessage.style.display = 'block';
