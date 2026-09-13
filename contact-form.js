@@ -1,6 +1,6 @@
 (() => {
     // Vorherige URL für Rückwechsel: https://script.google.com/macros/s/AKfycby2gR3eRqy2Hjs8sMQTrxHIAC_qh-nWoMKlagt7rkYjWUVyBh30MvcGnldLY9mKHcg/exec
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzosKzOhOzh77oYo4_1HCH-ANff7XLbxQlVLfbQpS71DGeAbSwUiLlEQavnPDoBSd8/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxlhXGWJaK7y6PZPAQo7JWGWM6pE9lEg9c2SFTMFgjCsPnUaB9DtvtdZItqcRWLGko/exec';
 
     document.querySelectorAll('form[data-reinico-contact]').forEach(form => {
         const button = form.querySelector('button[type="submit"]');
