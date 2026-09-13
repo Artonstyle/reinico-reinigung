@@ -8,7 +8,7 @@
 <div id="portal" hidden><section class="card"><h2 id="person"></h2><div id="phase"></div><label>Einsatzort<select id="object"><option value="">Einsatzort auswählen</option></select><small>Die Auswahl kommt aus der CRM-Objektliste.</small></label><div>Arbeitszeit ohne Pausen</div><div id="duration">00:00:00</div><div class="buttons"><button data-type="Start">Kommen · Arbeit starten</button><button data-type="Pause">Pause starten</button><button data-type="Weiter">Weiterarbeiten</button><button data-type="Ende">Gehen · Feierabend</button><button class="secondary" id="refresh">Status aktualisieren</button></div></section><section class="card"><h2>Gespeicherter Stempelverlauf</h2><div id="history"></div></section><button class="secondary" id="logout">Abmelden</button></div>
 <p id="notice" role="status"></p><footer>Live-Daten · Buchungszeit vom Server.<br>Bei Verbindungsfehlern wird keine Buchung als gespeichert angezeigt.</footer></main>
 <script>
-const API='https://script.google.com/macros/s/AKfycbxDe5bZSg93330EzrFOXErHoBvGnJYEFz8KLk95q7s4n7ie9UIv05E1VzOQw70JfJU/exec',SUPABASE='https://pgcjsyzoukyynkufupms.supabase.co',KEY='sb_publishable_uyKhe83Crckp93AjCrIruw_NAuV16p2';
+const API='https://script.google.com/macros/s/AKfycbz0DoAO1svCm_DzC3ZD33cjJMQG2b07N5oxlb2DS1wg8QT4RPbhIyx6V-rG2XzsBK0/exec',SUPABASE='https://pgcjsyzoukyynkufupms.supabase.co',KEY='sb_publishable_uyKhe83Crckp93AjCrIruw_NAuV16p2';
 const el=id=>document.getElementById(id);let token='',expires=0,state=null,offset=0,busy=false,pending=null;
 const SESSION_KEY='reinico-stempel-session-v1';let refreshTask=null,sessionGeneration=0;
 function readSession(){try{return JSON.parse(localStorage.getItem(SESSION_KEY)||'null')}catch(error){return null}}
