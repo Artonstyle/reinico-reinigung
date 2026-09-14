@@ -2,29 +2,56 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impressum &amp; Datenschutz | Reinico Gebäudereinigung &amp; Service GbR</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+<style>
+        body { background: #f4f7fa; }
+        .legal-page { max-width: 960px; margin: 0 auto; padding: 36px 20px 48px; font-size: 16px; line-height: 1.75; }
+        .legal-page section { background: #fff; border: 1px solid #e1e8f0; border-radius: 16px; padding: 32px; box-shadow: 0 5px 20px rgba(44,62,80,.04); }
+        .legal-page h1 { font-size: clamp(24px, 5.5vw, 34px); line-height: 1.25; color: #3b5998; margin-bottom: 22px; overflow-wrap: anywhere; }
+        .legal-page h3 { font-size: 18px; line-height: 1.4; color: #2c3e50; margin: 26px 0 10px; }
+        .legal-page p { margin: 0 0 18px; }
+        .legal-page p:last-child { margin-bottom: 0; }
+        .legal-page a { color: #0056b3; overflow-wrap: anywhere; text-underline-offset: 3px; }
+        footer { line-height: 1.7; overflow-wrap: anywhere; }
+        @media (max-width: 768px) {
+            .legal-page { padding: 24px 14px 32px; }
+            .legal-page section { padding: 24px 20px; border-radius: 14px; }
+            .legal-page hr { margin: 24px 0 !important; }
+        }
+        @media (max-width: 360px) {
+            .header-container { padding: 0 10px; }
+            .logo { font-size: 1.05rem; }
+            .nav-links { gap: 5px; }
+            .legal-page section { padding: 22px 16px; }
+        }
+    </style>
 </head>
 <body>
 <header>
-    <a href="index.html" class="logo">Reinico<span>Gebäudereinigung</span></a>
-    <ul class="nav-links">
-        <li><a href="index.html">Startseite</a></li>
-        <li>
-            <a href="#">Unsere Dienstleistungen <i class="fas fa-chevron-down"></i></a>
-            <ul class="dropdown">
-                <li><a href="kehrwoche.html">Kehrwoche</a></li>
+    <div class="header-container">
+        <div class="logo-box">
+            <a href="index.html" class="logo">Reinico <span>Gebäudereinigung</span></a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Startseite</a></li>
+                <li class="has-dropdown">
+                    <a href="#">Dienstleistungen <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="kehrwoche.html">Kehrwoche</a></li>
                         <li><a href="winterdienst.html">Winterdienst</a></li>
                         <li><a href="praxisreinigung.html">Praxisreinigung</a></li>
                         <li><a href="parkplatzreinigung.html">Parkplatzreinigung</a></li>
-                <li><a href="gartenpflege.html">Gartenpflege</a></li>
-                <li><a href="fensterreinigung.html">Fensterreinigung</a></li>
-                <li><a href="bueroreinigung.html">Büroreinigung</a></li>
-                <li><a href="grundreinigung.html">Grundreinigung</a></li>
-                <li><a href="unterhaltsreinigung.html">Unterhaltsreinigung</a></li>
-                <li><a href="hausmeisterservice.html">Hausmeisterservice</a></li>
-                <li><a href="teppichreinigung.html">Teppichreinigung</a></li>
+                        <li><a href="gartenpflege.html">Gartenpflege</a></li>
+                        <li><a href="fensterreinigung.html">Fensterreinigung</a></li>
+                        <li><a href="bueroreinigung.html">Büroreinigung</a></li>
+                        <li><a href="grundreinigung.html">Grundreinigung</a></li>
+                        <li><a href="unterhaltsreinigung.html">Unterhaltsreinigung</a></li>
+                        <li><a href="hausmeisterservice.html">Hausmeisterservice</a></li>
+                        <li><a href="teppichreinigung.html">Teppichreinigung</a></li>
                         <li><a href="entruempelung.html">Entrümpelung</a></li>
                         <li><a href="baureinigung.html">Baureinigung</a></li>
                         <li><a href="fassadenreinigung.html">Fassadenreinigung</a></li>
@@ -37,14 +64,16 @@
                         <li><a href="sonderreinigung.html">Sonderreinigung</a></li>
                         <li><a href="treppenhausreinigung.html">Treppenhausreinigung</a></li>
                         <li><a href="verkehrsmittelreinigung.html">Verkehrsmittelreinigung</a></li>
+                    </ul>
+                </li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+                <li><a href="jobs.html">Jobs</a></li>
             </ul>
-        </li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-        <li><a href="jobs.html">Jobs</a></li>
-    </ul>
+        </nav>
+    </div>
 </header>
 
-<main class="section-padding" style="line-height: 1.6; max-width: 900px; margin: auto;">
+<main class="legal-page">
     
     <section>
         <h1>Impressum</h1>
