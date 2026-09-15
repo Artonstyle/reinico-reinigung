@@ -1,6 +1,6 @@
 (() => {
     // Firmenkonto-Web-App
-    const scriptURL = 'https://script.google.com/macros/s/AKfycby-wNnd-4kiQS6xrNuNZHRjzYF-lShH5wJ7SQ797Gl_UsFR86NbEh_HixXDXdXTD4lV/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwH8sd1nLXWqdg2C3Qos-o0kDtxt1y70QsZvZavxwgxxVV_XOymppBOiLkc07pQszli/exec';
 
     document.querySelectorAll('form[data-reinico-contact]').forEach(form => {
         const button = form.querySelector('button[type="submit"]');
