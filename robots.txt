@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /login.html
+Disallow: /stempel.html
+Disallow: /stempel-live.html
+
+Sitemap: https://xn--reinico-gebudereinigung-57b.de/sitemap.xml
