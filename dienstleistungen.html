@@ -2,24 +2,41 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unsere Dienstleistungen | Reinico</title>
+    <meta name="description" content="Entdecken Sie die Dienstleistungen von REINICO Gebäudereinigung in Baden-Württemberg.">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
-        .s-box { padding: 80px 10%; border-bottom: 1px solid #eee; display: flex; gap: 40px; align-items: center; }
-        .s-box:nth-child(even) { flex-direction: row-reverse; background: #fafafa; }
-        .s-img { flex: 1; height: 300px; border-radius: 10px; overflow: hidden; }
-        .s-img img { width: 100%; height: 100%; object-fit: cover; }
-        .s-text { flex: 1; }
+        .area-banner { background: #3b5998; color: white; padding: 15px; text-align: center; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .services-intro { max-width: 900px; margin: 0 auto; padding: 65px 20px 45px; text-align: center; }
+        .services-intro h1 { color: #3b5998; font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 15px; }
+        .services-intro p { font-size: 1.1rem; line-height: 1.7; margin-bottom: 28px; }
+        .services-grid { background: #f4f7fa; padding: 40px max(20px, calc((100% - 1200px) / 2)) 75px; display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 22px; }
+        .s-box { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,.06); display: flex; flex-direction: column-reverse; transition: transform .2s, box-shadow .2s; }
+        .s-box:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,.1); }
+        .s-img { height: 170px; overflow: hidden; }
+        .s-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .s-text { padding: 24px; flex: 1; }
+        .s-text h2 { color: #3b5998; font-size: 1.25rem; margin-bottom: 10px; }
+        .s-text p { line-height: 1.6; margin-bottom: 14px; }
+        .s-text a { color: #0056b3; font-weight: 700; text-decoration: none; }
+        .s-text a:hover { text-decoration: underline; }
+        .services-cta { text-align: center; padding: 55px 20px; }
+        .services-cta h2 { color: #3b5998; margin-bottom: 18px; }
+        @media (max-width: 700px) { .services-intro { padding-top: 45px; } .services-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
+<div class="area-banner">Wir sind in ganz Baden-Württemberg tätig</div>
 <header>
-    <a href="index.html" class="logo">Reinico<span>Gebäudereinigung</span></a>
+  <div class="header-container">
+    <div class="logo-box"><a href="index.html" class="logo">Reinico <span>Gebäudereinigung</span></a></div>
+    <nav aria-label="Hauptnavigation">
     <ul class="nav-links">
         <li><a href="index.html">Startseite</a></li>
-        <li>
-            <a href="dienstleistungen.html">Unsere Dienstleistungen <i class="fas fa-chevron-down"></i></a>
+        <li class="has-dropdown">
+            <a href="dienstleistungen.html" aria-current="page">Dienstleistungen <i class="fas fa-chevron-down"></i></a>
             <ul class="dropdown">
                 <li><a href="dienstleistungen.html#kehrwoche">Kehrwoche</a></li>
                 <li><a href="dienstleistungen.html#winterdienst">Winterdienst</a></li>
@@ -49,20 +66,29 @@
         <li><a href="kontakt.html">Kontakt</a></li>
         <li><a href="jobs.html">Jobs</a></li>
     </ul>
+    </nav>
+  </div>
 </header>
 
-<div id="kehrwoche" class="s-box"><div class="s-text"><h2>Kehrwoche</h2><p>Gründliche Reinigung von Treppenhäusern und Wegen.</p></div><div class="s-img"><img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?w=800"></div></div>
-<div id="winterdienst" class="s-box"><div class="s-text"><h2>Winterdienst</h2><p>Sicherheit bei Schnee und Glätte rund um die Uhr.</p></div><div class="s-img"><img src="https://images.unsplash.com/photo-1418985991508-e47386d96a71?w=800"></div></div>
+<main>
+<section class="services-intro">
+    <h1>Unsere Dienstleistungen</h1>
+    <p>Saubere Räume, gepflegte Außenbereiche und zuverlässiger Service – wir finden die passende Lösung für Ihr Objekt.</p>
+    <a href="kontakt.html" class="btn-primary" style="display:inline-block; text-decoration:none; padding:16px 28px;">Jetzt Angebot anfordern</a>
+</section>
+<div class="services-grid">
+<div id="kehrwoche" class="s-box"><div class="s-text"><h2>Kehrwoche</h2><p>Gründliche Reinigung von Treppenhäusern und Wegen.</p><a href="kehrwoche.html">Mehr erfahren und anfragen</a></div><div class="s-img"><img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?w=800" alt="Gepflegter Innenbereich" loading="lazy"></div></div>
+<div id="winterdienst" class="s-box"><div class="s-text"><h2>Winterdienst</h2><p>Sicherheit bei Schnee und Glätte.</p><a href="winterdienst.html">Mehr erfahren und anfragen</a></div><div class="s-img"><img src="https://images.unsplash.com/photo-1418985991508-e47386d96a71?w=800" alt="Winterliche Außenfläche" loading="lazy"></div></div>
 <div id="praxisreinigung" class="s-box"><div class="s-text"><h2>Praxisreinigung</h2><p>Hygienische Reinigung für Praxen und medizinische Bereiche.</p><a href="praxisreinigung.html">Mehr erfahren und anfragen</a></div><div class="s-img"><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800" alt="Praxisreinigung"></div></div>
 <div id="parkplatzreinigung" class="s-box"><div class="s-text"><h2>Parkplatzreinigung</h2><p>Saubere Parkflächen, Gehwege und Tiefgaragen.</p><a href="parkplatzreinigung.html">Mehr erfahren und anfragen</a></div><div class="s-img"><img src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=800" alt="Parkplatzreinigung"></div></div>
-<div id="garten" class="s-box"><div class="s-text"><h2>Gartenpflege</h2><p>Pflege Ihrer Grünanlagen und Außenbereiche.</p></div><div class="s-img"><img src="https://images.unsplash.com/photo-1558905745-04b905096081?w=800"></div></div>
-<div id="fenster" class="s-box"><div class="s-text"><h2>Fensterreinigung</h2><p>Streifenfreier Glanz für alle Glasflächen.</p></div><div class="s-img"><img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=800"></div></div>
-<div id="buero" class="s-box"><div class="s-text"><h2>Büroreinigung</h2><p>Professionelle Reinigung Ihrer Geschäftsräume.</p></div><div class="s-img"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800"></div></div>
-<div id="grund" class="s-box"><div class="s-text"><h2>Grundreinigung</h2><p>Intensive Tiefenreinigung für höchste Sauberkeit.</p></div><div class="s-img"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800"></div></div>
-<div id="unterhalt" class="s-box"><div class="s-text"><h2>Unterhaltsreinigung</h2><p>Regelmäßige Reinigung nach festem Plan.</p></div><div class="s-img"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6954?w=800"></div></div>
-<div id="hausmeister" class="s-box"><div class="s-text"><h2>Hausmeisterservice</h2><p>Komplette Betreuung Ihrer Immobilie.</p></div><div class="s-img"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6954?w=800"></div></div>
-<div id="teppich" class="s-box"><div class="s-text"><h2>Teppichreinigung</h2><p>Fasertiefe Reinigung Ihrer Teppichböden.</p></div><div class="s-img"><img src="https://images.unsplash.com/photo-1558317374-067fb5f30001?w=800"></div></div>
-<div id="entruempelung" class="s-box"><div class="s-text"><h2>Entrümpelung</h2><p>Fachgerechte Entsorgung und besenreine Räumung.</p></div><div class="s-img"><img src="https://images.unsplash.com/photo-1505691938895-1758d7eaa511?w=800"></div></div>
+<div id="garten" class="s-box"><div class="s-text"><h2>Gartenpflege</h2><p>Pflege Ihrer Grünanlagen und Außenbereiche.</p><a href="gartenpflege.html">Mehr erfahren und anfragen</a></div><div class="s-img"><img src="https://images.unsplash.com/photo-1558905745-04b905096081?w=800" alt="Gepflegte Grünanlage" loading="lazy"></div></div>
+<div id="fenster" class="s-box"><div class="s-text"><h2>Fensterreinigung</h2><p>Streifenfreier Glanz für alle Glasflächen.</p><a href="fensterreinigung.html">Mehr erfahren und anfragen</a></div><div class="s-img"><img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=800" alt="Saubere Fenster" loading="lazy"></div></div>
+<div id="buero" class="s-box"><div class="s-text"><h2>Büroreinigung</h2><p>Professionelle Reinigung Ihrer Geschäftsräume.</p><a href="bueroreinigung.html">Mehr erfahren und anfragen</a></div><div class="s-img"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800" alt="Büroraum" loading="lazy"></div></div>
+<div id="grund" class="s-box"><div class="s-text"><h2>Grundreinigung</h2><p>Intensive Tiefenreinigung für höchste Sauberkeit.</p><a href="grundreinigung.html">Mehr erfahren und anfragen</a></div><div class="s-img"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800" alt="Sauberer Innenbereich" loading="lazy"></div></div>
+<div id="unterhalt" class="s-box"><div class="s-text"><h2>Unterhaltsreinigung</h2><p>Regelmäßige Reinigung nach festem Plan.</p><a href="unterhaltsreinigung.html">Mehr erfahren und anfragen</a></div><div class="s-img"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6954?w=800" alt="Reinigung eines Innenbereichs" loading="lazy"></div></div>
+<div id="hausmeister" class="s-box"><div class="s-text"><h2>Hausmeisterservice</h2><p>Betreuung Ihrer Immobilie nach Vereinbarung.</p><a href="hausmeisterservice.html">Mehr erfahren und anfragen</a></div><div class="s-img"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6954?w=800" alt="Gepflegte Immobilie" loading="lazy"></div></div>
+<div id="teppich" class="s-box"><div class="s-text"><h2>Teppichreinigung</h2><p>Fasertiefe Reinigung Ihrer Teppichböden.</p><a href="teppichreinigung.html">Mehr erfahren und anfragen</a></div><div class="s-img"><img src="https://images.unsplash.com/photo-1558317374-067fb5f30001?w=800" alt="Teppichreinigung" loading="lazy"></div></div>
+<div id="entruempelung" class="s-box"><div class="s-text"><h2>Entrümpelung</h2><p>Fachgerechte Entsorgung und besenreine Räumung.</p><a href="entruempelung.html">Mehr erfahren und anfragen</a></div><div class="s-img"><img src="https://images.unsplash.com/photo-1505691938895-1758d7eaa511?w=800" alt="Geräumter Innenbereich" loading="lazy"></div></div>
 <div id="baureinigung" class="s-box"><div class="s-text"><h2>Baureinigung</h2><p>Bezugsfertige Sauberkeit nach Neubau, Umbau und Renovierung.</p><a href="baureinigung.html">Mehr erfahren und anfragen</a></div><div class="s-img"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800" alt="Baureinigung"></div></div>
 <div id="fassadenreinigung" class="s-box"><div class="s-text"><h2>Fassadenreinigung</h2><p>Materialschonende Reinigung für gepflegte Immobilien.</p><a href="fassadenreinigung.html">Mehr erfahren und anfragen</a></div><div class="s-img"><img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800" alt="Fassadenreinigung"></div></div>
 <div id="hotelreinigung" class="s-box"><div class="s-text"><h2>Hotelreinigung</h2><p>Saubere Zimmer und Gemeinschaftsflächen für zufriedene Gäste.</p><a href="hotelreinigung.html">Mehr erfahren und anfragen</a></div><div class="s-img"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800" alt="Hotelreinigung"></div></div>
@@ -75,6 +101,12 @@
 <div id="treppenhausreinigung" class="s-box"><div class="s-text"><h2>Treppenhausreinigung</h2><p>Gepflegte Treppen, Eingänge und Gemeinschaftsflächen.</p><a href="treppenhausreinigung.html">Mehr erfahren und anfragen</a></div><div class="s-img"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800" alt="Treppenhausreinigung"></div></div>
 <div id="verkehrsmittelreinigung" class="s-box"><div class="s-text"><h2>Verkehrsmittelreinigung</h2><p>Saubere Fahrzeuge und Fahrgasträume nach Ihrem Zeitplan.</p><a href="verkehrsmittelreinigung.html">Mehr erfahren und anfragen</a></div><div class="s-img"><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800" alt="Verkehrsmittelreinigung"></div></div>
 
+</div>
+<section class="services-cta">
+    <h2>Welche Reinigung passt zu Ihnen?</h2>
+    <a href="kontakt.html" class="btn-primary" style="display:inline-block; text-decoration:none; padding:16px 28px;">Unverbindlich anfragen</a>
+</section>
+</main>
 <footer><p>&copy; 2025 Reinico Gebäudereinigung</p></footer>
 </body>
 </html>
