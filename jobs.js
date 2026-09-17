@@ -15,6 +15,11 @@
             positions.forEach(position => {
                 const card = document.querySelector(`[data-job="${position.key}"]`);
                 card.hidden = !result.jobs?.[position.key];
+                const details = card.querySelector(`[data-job-details="${position.key}"]`);
+                const location = String(result.jobs?.[`${position.key}Ort`] || '').trim();
+                const types = Array.isArray(result.jobs?.[`${position.key}Arten`]) ? result.jobs[`${position.key}Arten`].filter(type => ['Vollzeit', 'Teilzeit', 'Minijob'].includes(type)) : [];
+                details.textContent = [location ? `Ort: ${location}` : '', types.join(' / ')].filter(Boolean).join(' · ');
+                details.hidden = !details.textContent;
             });
             form.querySelectorAll('[data-dynamic-position]').forEach(option => option.remove());
             open.forEach(position => form.elements.stelle.add(new Option(position.value, position.value)));
