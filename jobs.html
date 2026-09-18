@@ -13,6 +13,9 @@
         .job-card button,.initiative-button{background:var(--primary);color:#fff;border:0;border-radius:9px;padding:12px 20px;font:inherit;font-weight:700;cursor:pointer}
         .job-card button:hover,.initiative-button:hover{filter:brightness(.9)}
         .initiative-button{margin-top:4px}
+        .application-field{display:block;margin-bottom:16px;font-weight:600;color:#24384e}
+        .application-field input,.application-field select,.application-field textarea{display:block;width:100%;box-sizing:border-box;margin-top:7px;padding:15px;border:1px solid #cbd5df;border-radius:8px;background:#fff;font:inherit;font-weight:400;color:#202b38}
+        .application-field textarea{min-height:120px;resize:vertical}
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </head>
@@ -84,22 +87,24 @@
                 
                 <form id="applicationForm">
                     <input type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px">
-                    <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px;">
-                        <input type="text" name="name" placeholder="Vor- und Nachname" required maxlength="120" autocomplete="name" style="flex: 1; min-width: 250px; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
-                        <input type="tel" name="telefon" placeholder="Telefonnummer (optional)" maxlength="60" autocomplete="tel" style="flex: 1; min-width: 250px; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
-                    </div>
-                    <div style="margin-bottom: 15px;">
-                        <input type="email" name="email" placeholder="E-Mail-Adresse" required maxlength="180" autocomplete="email" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
-                    </div>
-                    <div style="margin-bottom: 15px;">
-                        <select name="stelle" required style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background: white;">
-                            <option value="">Für welche Stelle interessierst du dich?</option>
+                    <label class="application-field">Vor- und Nachname
+                        <input type="text" name="name" required maxlength="120" autocomplete="name">
+                    </label>
+                    <label class="application-field">Telefonnummer (optional)
+                        <input type="tel" name="telefon" maxlength="60" autocomplete="tel">
+                    </label>
+                    <label class="application-field">E-Mail-Adresse
+                        <input type="email" name="email" required maxlength="180" autocomplete="email">
+                    </label>
+                    <label class="application-field">Stelle
+                        <select name="stelle" required>
+                            <option value="">Bitte Stelle auswählen</option>
                             <option value="Initiativbewerbung">Initiativbewerbung</option>
                         </select>
-                    </div>
-                    <div style="margin-bottom: 25px;">
-                        <textarea name="nachricht" placeholder="Ein paar Worte zu dir (Erfahrung, Verfügbarkeit etc.)..." required maxlength="3000" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; min-height: 120px; font-family: sans-serif;"></textarea>
-                    </div>
+                    </label>
+                    <label class="application-field" style="margin-bottom:25px">Nachricht
+                        <textarea name="nachricht" placeholder="Ein paar Worte zu dir (Erfahrung, Verfügbarkeit etc.)..." required maxlength="3000"></textarea>
+                    </label>
                     
                     <button type="submit" class="btn-primary" style="width: 100%; padding: 18px; border: none; cursor: pointer; text-transform: uppercase; font-weight: bold; background-color: var(--primary); color: white; border-radius: 8px;">
                         Bewerbung abschicken
