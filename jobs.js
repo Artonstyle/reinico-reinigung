@@ -57,13 +57,13 @@
             });
             cards.replaceChildren();
             entries.forEach(job => {
-                const position = positions.find(item => item.key === job.art);
-                if (!position) return;
+                const title = positions.find(item => item.key === job.art)?.value || String(job.art || '').trim();
+                if (!title) return;
                 const types = Array.isArray(job.arten) ? job.arten.filter(type => ['Vollzeit', 'Teilzeit', 'Minijob'].includes(type)) : [];
-                addJobCard(position, String(job.ort || '').trim(), types);
+                addJobCard({value: title}, String(job.ort || '').trim(), types);
             });
             form.querySelectorAll('[data-dynamic-position]').forEach(option => option.remove());
-            positions.filter(position => entries.some(job => job.art === position.key)).forEach(position => form.elements.stelle.add(new Option(position.value, position.value)));
+            [...new Set(entries.map(job => positions.find(item => item.key === job.art)?.value || String(job.art || '').trim()).filter(Boolean))].forEach(title => form.elements.stelle.add(new Option(title, title)));
             [...form.elements.stelle.options].slice(2).forEach(option => option.dataset.dynamicPosition = 'true');
             availability.textContent = cards.childElementCount ? 'Aktuell sind folgende Stellen offen:' : 'Aktuell haben wir keine offenen Stellen ausgeschrieben. Initiativbewerbungen sind willkommen.';
         } catch (error) {
