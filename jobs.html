@@ -5,7 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jobs & Karriere | Reinico Gebäudereinigung</title>
     <link rel="stylesheet" href="style.css">
-    <style>[data-job][hidden]{display:none!important}</style>
+    <style>
+        [hidden]{display:none!important}
+        .job-card{background:#f4f7fa;padding:25px;border-radius:12px;margin-bottom:18px;border-left:5px solid var(--primary);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+        .job-card h3{margin:0;color:var(--secondary)}
+        .job-card p{margin:5px 0 0;color:#555}
+        .job-card button,.initiative-button{background:var(--primary);color:#fff;border:0;border-radius:9px;padding:12px 20px;font:inherit;font-weight:700;cursor:pointer}
+        .job-card button:hover,.initiative-button:hover{filter:brightness(.9)}
+        .initiative-button{margin-top:4px}
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </head>
 <body>
@@ -65,26 +73,14 @@
 
             <div style="margin-bottom: 60px;">
                 <p id="jobsAvailability" role="status" style="padding: 20px; background: #f4f7fa; border-left: 5px solid var(--primary); border-radius: 8px;">Aktuelle Stellen werden geladen …</p>
-                <div data-job="reinigung" hidden style="background: #f4f7fa; padding: 25px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid var(--primary); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
-                    <div>
-                        <h3 style="margin: 0; color: var(--secondary);">Reinigungskraft (m/w/d)</h3>
-                        <p data-job-details="reinigung" style="margin: 5px 0 0 0; color: #666;"></p>
-                    </div>
-                    <span style="background: var(--primary); color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">Stelle offen</span>
-                </div>
-
-                <div data-job="hausmeister" hidden style="background: #f4f7fa; padding: 25px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid var(--primary); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
-                    <div>
-                        <h3 style="margin: 0; color: var(--secondary);">Hausmeister-Assistent (m/w/d)</h3>
-                        <p data-job-details="hausmeister" style="margin: 5px 0 0 0; color: #666;"></p>
-                    </div>
-                    <span style="background: var(--primary); color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">Stelle offen</span>
-                </div>
+                <div id="jobCards"></div>
+                <button type="button" id="initiativeButton" class="initiative-button">Initiativ bewerben</button>
             </div>
 
-            <div style="background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border: 1px solid #eee;">
+            <div id="applicationSection" hidden style="background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border: 1px solid #eee;">
                 <h2 style="color: var(--primary); margin-bottom: 10px;">Kurzbewerbung senden</h2>
                 <p style="margin-bottom: 25px; color: #666;">Kein Lebenslauf parat? Schreib uns kurz, wer du bist und wofür du dich interessierst.</p>
+                <p id="selectedJob" role="status" hidden style="padding:12px 15px;background:#eef5fc;border-radius:8px;margin-bottom:18px"></p>
                 
                 <form id="applicationForm">
                     <input type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px">
