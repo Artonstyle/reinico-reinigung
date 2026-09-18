@@ -50,17 +50,20 @@
             const response = await fetch(endpoint, {method: 'POST', body: new URLSearchParams({action: 'reinico_jobs_status'})});
             const result = await response.json();
             if (!response.ok || result.result !== 'success') throw new Error('Stellenstatus nicht verfügbar');
-            const open = positions.filter(position => result.jobs?.[position.key]);
+            const entries = Array.isArray(result.jobs?.stellen) ? result.jobs.stellen.filter(job => job.offen === true) : positions.flatMap(position => {
+                if (!result.jobs?.[position.key]) return [];
+                const locations = String(result.jobs?.[`${position.key}Ort`] || '').split(/[,;\n]+/).map(place => place.trim()).filter(Boolean);
+                return (locations.length ? locations : ['']).map(ort => ({art: position.key, ort, arten: result.jobs?.[`${position.key}Arten`]}));
+            });
             cards.replaceChildren();
-            positions.forEach(position => {
-                if (!result.jobs?.[position.key]) return;
-                const location = String(result.jobs?.[`${position.key}Ort`] || '').trim();
-                const types = Array.isArray(result.jobs?.[`${position.key}Arten`]) ? result.jobs[`${position.key}Arten`].filter(type => ['Vollzeit', 'Teilzeit', 'Minijob'].includes(type)) : [];
-                const locations = [...new Set(location.split(/[,;\n]+/).map(place => place.trim()).filter(Boolean))];
-                (locations.length ? locations : ['']).forEach(place => addJobCard(position, place, types));
+            entries.forEach(job => {
+                const position = positions.find(item => item.key === job.art);
+                if (!position) return;
+                const types = Array.isArray(job.arten) ? job.arten.filter(type => ['Vollzeit', 'Teilzeit', 'Minijob'].includes(type)) : [];
+                addJobCard(position, String(job.ort || '').trim(), types);
             });
             form.querySelectorAll('[data-dynamic-position]').forEach(option => option.remove());
-            open.forEach(position => form.elements.stelle.add(new Option(position.value, position.value)));
+            positions.filter(position => entries.some(job => job.art === position.key)).forEach(position => form.elements.stelle.add(new Option(position.value, position.value)));
             [...form.elements.stelle.options].slice(2).forEach(option => option.dataset.dynamicPosition = 'true');
             availability.textContent = cards.childElementCount ? 'Aktuell sind folgende Stellen offen:' : 'Aktuell haben wir keine offenen Stellen ausgeschrieben. Initiativbewerbungen sind willkommen.';
         } catch (error) {
