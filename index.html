@@ -25,12 +25,19 @@
         @keyframes slideIn { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
 
         /* Einsatzgebiet Banner */
-        .area-banner { background: #3b5998; color: white; padding: 15px; text-align: center; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .area-banner { background: #3b5998; color: white; padding: 15px 0; overflow: hidden; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .area-banner-track { display: flex; width: max-content; animation: area-banner-scroll 30s linear infinite; }
+        .area-banner-track span { flex: none; min-width: 50vw; padding: 0 3rem; text-align: center; white-space: nowrap; }
+        @keyframes area-banner-scroll { to { transform: translateX(-50%); } }
+        @media (prefers-reduced-motion: reduce) {
+            .area-banner-track { width: 100%; justify-content: center; animation: none; }
+            .area-banner-track span[aria-hidden="true"] { display: none; }
+        }
     </style>
 </head>
 <body>
 
-<div class="area-banner">Wir sind in ganz Baden-Württemberg tätig</div>
+<div class="area-banner"><div class="area-banner-track"><span>Wir sind in ganz Baden-Württemberg tätig</span><span aria-hidden="true">Wir sind in ganz Baden-Württemberg tätig</span><span aria-hidden="true">Wir sind in ganz Baden-Württemberg tätig</span><span aria-hidden="true">Wir sind in ganz Baden-Württemberg tätig</span></div></div>
 
 <header>
     <div class="header-container">
