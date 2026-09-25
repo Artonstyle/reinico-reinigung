@@ -1165,6 +1165,17 @@ document.head.append(staffContractStyle);
     page.style.transformOrigin='top left';
     page.style.transform=`scale(${scale})`;
     page.style.marginLeft=`${Math.max(6,(frame.clientWidth-naturalWidth*scale)/2)}px`;
+    const header=page.querySelector('.head');
+    if(header){
+      header.style.setProperty('display','flex','important');
+      header.style.setProperty('visibility','visible','important');
+      header.style.setProperty('color','#fff','important');
+      header.querySelectorAll('*').forEach(element=>{
+        element.style.setProperty('visibility','visible','important');
+        element.style.setProperty('color','#fff','important');
+        element.style.setProperty('opacity','1','important');
+      });
+    }
     doc.documentElement.style.overflowX='hidden';
     doc.documentElement.style.width='100%';
     doc.body.style.overflowX='hidden';
@@ -1172,11 +1183,16 @@ document.head.append(staffContractStyle);
     doc.body.style.minWidth='0';
     doc.body.style.padding='6px 0 0';
     doc.body.style.height=`${Math.ceil(naturalHeight*scale+18)}px`;
+    frame.style.setProperty('height',`${Math.ceil(naturalHeight*scale+24)}px`,'important');
+    frame.contentWindow?.scrollTo(0,0);
   }
   ['offerPdfFrame','invoicePdfFrame'].forEach(id=>{
     const frame=document.getElementById(id);
     if(!frame)return;
-    frame.addEventListener('load',()=>requestAnimationFrame(()=>fitPdfPreview(frame)));
+    frame.addEventListener('load',()=>requestAnimationFrame(()=>{
+      fitPdfPreview(frame);
+      frame.closest('#offerPdfPanel,#invoicePdfPanel')?.scrollIntoView({block:'start'});
+    }));
     new ResizeObserver(()=>fitPdfPreview(frame)).observe(frame);
   });
   mobileQuery.addEventListener?.('change',()=>{
