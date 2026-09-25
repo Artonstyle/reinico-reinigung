@@ -1095,7 +1095,7 @@ document.head.append(staffContractStyle);
   #applicantsPanel .job-settings-grid{grid-template-columns:1fr!important}
   #applicantsPanel .job-settings{padding:12px!important}
   #offerPdfPanel,#invoicePdfPanel{margin:0!important;padding:8px 0 18px!important;min-height:0!important;background:#dce7f3!important;overflow:hidden!important}
-  #offerPdfPanel .offer-pdf-toolbar,#invoicePdfPanel .offer-pdf-toolbar{position:sticky;top:61px;z-index:30;display:flex!important;width:100%!important;margin:0 0 8px!important;padding:7px 5px!important;justify-content:center!important;background:#dce7f3!important;border:0!important;border-radius:0!important}
+  #offerPdfPanel .offer-pdf-toolbar,#invoicePdfPanel .offer-pdf-toolbar{position:static!important;display:flex!important;width:100%!important;margin:10px 0 0!important;padding:7px 5px!important;justify-content:center!important;background:#dce7f3!important;border:0!important;border-radius:0!important}
   #offerPdfPanel .offer-pdf-toolbar button,#invoicePdfPanel .offer-pdf-toolbar button{position:static!important;width:100%!important;max-width:360px!important;min-height:44px!important;margin:0!important}
   #offerPdfFrame,#invoicePdfFrame{display:block!important;width:100%!important;height:calc(100dvh - 190px)!important;min-height:520px!important;margin:0!important;border:0!important;border-radius:7px!important;overflow:hidden!important;box-shadow:none!important;background:#dce7f3!important}
   #reinicoLogout{top:11px!important;right:62px!important;min-height:34px!important;height:36px!important}
@@ -1175,8 +1175,16 @@ document.head.append(staffContractStyle);
     page.style.transformOrigin='top left';
     page.style.transform=`scale(${scale})`;
     page.style.marginLeft=`${Math.max(6,(frame.clientWidth-naturalWidth*scale)/2)}px`;
-    const header=page.querySelector('.head');
+    let header=page.querySelector('.head');
     if(header){
+      if(!header.classList.contains('reinico-mobile-letterhead')){
+        const companyMarkup=header.querySelector('.company')?.innerHTML||'';
+        const replacement=doc.createElement('header');
+        replacement.className='head reinico-mobile-letterhead';
+        replacement.innerHTML=`<div class="brand">REINICO<small>GEBÄUDEREINIGUNG</small></div><div class="company">${companyMarkup}</div>`;
+        header.replaceWith(replacement);
+        header=replacement;
+      }
       const brand=header.querySelector('.brand');
       const companyBlock=header.querySelector('.company');
       header.style.setProperty('display','grid','important');
@@ -1246,7 +1254,19 @@ document.head.append(staffContractStyle);
     }));
     new ResizeObserver(()=>fitPdfPreview(frame)).observe(frame);
   });
+  function arrangePdfControls(){
+    ['offerPdfFrame','invoicePdfFrame'].forEach(id=>{
+      const frame=document.getElementById(id);
+      const panel=frame?.parentElement;
+      const toolbar=panel?.querySelector('.offer-pdf-toolbar');
+      if(!frame||!panel||!toolbar)return;
+      if(mobileQuery.matches)panel.append(toolbar);
+      else panel.insertBefore(toolbar,frame);
+    });
+  }
+  arrangePdfControls();
   mobileQuery.addEventListener?.('change',()=>{
+    arrangePdfControls();
     ['offerPdfFrame','invoicePdfFrame'].forEach(id=>fitPdfPreview(document.getElementById(id)));
   });
 })();
