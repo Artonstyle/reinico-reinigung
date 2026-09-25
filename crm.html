@@ -1094,6 +1094,10 @@ document.head.append(staffContractStyle);
   .pipeline-board{grid-template-columns:repeat(7,82vw)!important}
   #applicantsPanel .job-settings-grid{grid-template-columns:1fr!important}
   #applicantsPanel .job-settings{padding:12px!important}
+  #offerPdfPanel,#invoicePdfPanel{margin:0!important;padding:8px 0 18px!important;min-height:0!important;background:#dce7f3!important;overflow:hidden!important}
+  #offerPdfPanel .offer-pdf-toolbar,#invoicePdfPanel .offer-pdf-toolbar{position:sticky;top:61px;z-index:30;display:flex!important;width:100%!important;margin:0 0 8px!important;padding:7px 5px!important;justify-content:center!important;background:#dce7f3!important;border:0!important;border-radius:0!important}
+  #offerPdfPanel .offer-pdf-toolbar button,#invoicePdfPanel .offer-pdf-toolbar button{position:static!important;width:100%!important;max-width:360px!important;min-height:44px!important;margin:0!important}
+  #offerPdfFrame,#invoicePdfFrame{display:block!important;width:100%!important;height:calc(100dvh - 190px)!important;min-height:520px!important;margin:0!important;border:0!important;border-radius:7px!important;overflow:hidden!important;box-shadow:none!important;background:#dce7f3!important}
   #reinicoLogout{top:11px!important;right:62px!important;min-height:34px!important;height:36px!important}
 }
 @media (min-width:901px){.mobile-menu-toggle{display:none!important}}
@@ -1133,6 +1137,51 @@ document.head.append(staffContractStyle);
     if(matchMedia('(max-width:900px)').matches&&side.classList.contains('mobile-menu-open')&&!side.contains(event.target))closeMenu();
   });
   matchMedia('(min-width:901px)').addEventListener?.('change',event=>{if(event.matches)closeMenu()});
+})();
+</script>
+<script>
+(()=>{
+  const mobileQuery=matchMedia('(max-width:900px)');
+  function fitPdfPreview(frame){
+    if(!mobileQuery.matches||!frame?.contentDocument)return;
+    const doc=frame.contentDocument;
+    const page=doc.querySelector('.page,.pdf-page');
+    if(!page)return;
+    let printFix=doc.getElementById('reinico-mobile-print-fix');
+    if(!printFix){
+      printFix=doc.createElement('style');
+      printFix.id='reinico-mobile-print-fix';
+      printFix.textContent='@media print{html,body{overflow:visible!important;width:auto!important;height:auto!important}.page,.pdf-page{transform:none!important;transform-origin:initial!important;margin:0!important;width:210mm!important;max-width:none!important}}';
+      doc.head.append(printFix);
+    }
+    page.style.transform='none';
+    page.style.margin='0';
+    page.style.maxWidth='none';
+    page.style.width='794px';
+    const naturalWidth=794;
+    const available=Math.max(280,frame.clientWidth-12);
+    const scale=Math.min(1,available/naturalWidth);
+    const naturalHeight=Math.max(page.scrollHeight,1123);
+    page.style.transformOrigin='top left';
+    page.style.transform=`scale(${scale})`;
+    page.style.marginLeft=`${Math.max(6,(frame.clientWidth-naturalWidth*scale)/2)}px`;
+    doc.documentElement.style.overflowX='hidden';
+    doc.documentElement.style.width='100%';
+    doc.body.style.overflowX='hidden';
+    doc.body.style.width='100%';
+    doc.body.style.minWidth='0';
+    doc.body.style.padding='6px 0 0';
+    doc.body.style.height=`${Math.ceil(naturalHeight*scale+18)}px`;
+  }
+  ['offerPdfFrame','invoicePdfFrame'].forEach(id=>{
+    const frame=document.getElementById(id);
+    if(!frame)return;
+    frame.addEventListener('load',()=>requestAnimationFrame(()=>fitPdfPreview(frame)));
+    new ResizeObserver(()=>fitPdfPreview(frame)).observe(frame);
+  });
+  mobileQuery.addEventListener?.('change',()=>{
+    ['offerPdfFrame','invoicePdfFrame'].forEach(id=>fitPdfPreview(document.getElementById(id)));
+  });
 })();
 </script>
 </body></html>
