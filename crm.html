@@ -1158,9 +1158,18 @@ document.head.append(staffContractStyle);
     page.style.margin='0';
     page.style.maxWidth='none';
     page.style.width='794px';
+    page.style.setProperty('height','auto','important');
+    page.style.setProperty('min-height','1123px','important');
+    page.style.setProperty('overflow','visible','important');
     const naturalWidth=794;
     const available=Math.max(280,frame.clientWidth-12);
     const scale=Math.min(1,available/naturalWidth);
+    const content=page.querySelector('.content');
+    if(content){
+      content.style.setProperty('flex','0 0 auto','important');
+      content.style.setProperty('min-height','0','important');
+      content.style.setProperty('overflow','visible','important');
+    }
     const naturalHeight=Math.max(page.scrollHeight,1123);
     page.style.transformOrigin='top left';
     page.style.transform=`scale(${scale})`;
