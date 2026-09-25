@@ -1151,7 +1151,7 @@ document.head.append(staffContractStyle);
     if(!printFix){
       printFix=doc.createElement('style');
       printFix.id='reinico-mobile-print-fix';
-      printFix.textContent='@media print{html,body{overflow:visible!important;width:auto!important;height:auto!important}.page,.pdf-page{transform:none!important;transform-origin:initial!important;margin:0!important;width:210mm!important;max-width:none!important}}';
+      printFix.textContent='@media print{html,body{overflow:visible!important;width:auto!important;height:auto!important}.page,.pdf-page{transform:none!important;transform-origin:initial!important;margin:0!important;width:210mm!important;max-width:none!important}.head{height:auto!important;min-height:0!important;flex:0 0 auto!important}}';
       doc.head.append(printFix);
     }
     page.style.transform='none';
@@ -1168,6 +1168,10 @@ document.head.append(staffContractStyle);
     const header=page.querySelector('.head');
     if(header){
       header.style.setProperty('display','flex','important');
+      header.style.setProperty('flex','0 0 auto','important');
+      header.style.setProperty('min-height','112px','important');
+      header.style.setProperty('height','auto','important');
+      header.style.setProperty('overflow','visible','important');
       header.style.setProperty('visibility','visible','important');
       header.style.setProperty('color','#fff','important');
       header.querySelectorAll('*').forEach(element=>{
