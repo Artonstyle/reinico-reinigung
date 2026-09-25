@@ -1235,14 +1235,16 @@ document.head.append(staffContractStyle);
       doc.body.removeAttribute('style');
     };
     frame.contentWindow.onafterprint=()=>fitPdfPreview(frame);
-    doc.documentElement.style.overflowX='hidden';
+    doc.documentElement.style.overflow='hidden';
     doc.documentElement.style.width='100%';
-    doc.body.style.overflowX='hidden';
+    doc.body.style.overflow='hidden';
     doc.body.style.width='100%';
     doc.body.style.minWidth='0';
     doc.body.style.padding='6px 0 0';
     doc.body.style.height=`${Math.ceil(naturalHeight*scale+18)}px`;
     frame.style.setProperty('height',`${Math.ceil(naturalHeight*scale+24)}px`,'important');
+    frame.style.setProperty('overflow','hidden','important');
+    frame.setAttribute('scrolling','no');
     frame.contentWindow?.scrollTo(0,0);
   }
   ['offerPdfFrame','invoicePdfFrame'].forEach(id=>{
