@@ -1151,7 +1151,7 @@ document.head.append(staffContractStyle);
     if(!printFix){
       printFix=doc.createElement('style');
       printFix.id='reinico-mobile-print-fix';
-      printFix.textContent='@media print{html,body{overflow:visible!important;width:auto!important;height:auto!important}.page,.pdf-page{transform:none!important;transform-origin:initial!important;margin:0!important;width:210mm!important;max-width:none!important}.head{height:auto!important;min-height:0!important;flex:0 0 auto!important}}';
+      printFix.textContent='@media print{html,body{overflow:visible!important;width:auto!important;height:auto!important}.page,.pdf-page{display:flex!important;flex-direction:column!important;transform:none!important;transform-origin:initial!important;margin:0!important;width:210mm!important;max-width:none!important}.head{height:auto!important;min-height:0!important;flex:0 0 auto!important}}';
       doc.head.append(printFix);
     }
     page.style.transform='none';
@@ -1161,6 +1161,7 @@ document.head.append(staffContractStyle);
     page.style.setProperty('height','auto','important');
     page.style.setProperty('min-height','1123px','important');
     page.style.setProperty('overflow','visible','important');
+    page.style.setProperty('display','block','important');
     const naturalWidth=794;
     const available=Math.max(280,frame.clientWidth-12);
     const scale=Math.min(1,available/naturalWidth);
@@ -1176,19 +1177,56 @@ document.head.append(staffContractStyle);
     page.style.marginLeft=`${Math.max(6,(frame.clientWidth-naturalWidth*scale)/2)}px`;
     const header=page.querySelector('.head');
     if(header){
-      header.style.setProperty('display','flex','important');
-      header.style.setProperty('flex','0 0 auto','important');
-      header.style.setProperty('min-height','112px','important');
-      header.style.setProperty('height','auto','important');
+      const brand=header.querySelector('.brand');
+      const companyBlock=header.querySelector('.company');
+      header.style.setProperty('display','grid','important');
+      header.style.setProperty('grid-template-columns','1fr 1fr','important');
+      header.style.setProperty('align-items','center','important');
+      header.style.setProperty('flex','none','important');
+      header.style.setProperty('min-height','136px','important');
+      header.style.setProperty('height','136px','important');
+      header.style.setProperty('padding','28px 48px','important');
+      header.style.setProperty('box-sizing','border-box','important');
+      header.style.setProperty('background','#174b80','important');
       header.style.setProperty('overflow','visible','important');
       header.style.setProperty('visibility','visible','important');
       header.style.setProperty('color','#fff','important');
+      if(brand){
+        brand.style.setProperty('display','block','important');
+        brand.style.setProperty('font-size','28px','important');
+        brand.style.setProperty('font-weight','800','important');
+        brand.style.setProperty('line-height','1.2','important');
+      }
+      if(companyBlock){
+        companyBlock.style.setProperty('display','block','important');
+        companyBlock.style.setProperty('text-align','right','important');
+        companyBlock.style.setProperty('font-size','12px','important');
+        companyBlock.style.setProperty('line-height','1.45','important');
+      }
       header.querySelectorAll('*').forEach(element=>{
         element.style.setProperty('visibility','visible','important');
         element.style.setProperty('color','#fff','important');
         element.style.setProperty('opacity','1','important');
       });
     }
+    frame.contentWindow.onbeforeprint=()=>{
+      ['display','height','min-height','overflow','transform','transform-origin','margin','margin-left','max-width','width'].forEach(property=>page.style.removeProperty(property));
+      if(header){
+        ['display','grid-template-columns','align-items','flex','min-height','height','padding','box-sizing','background','overflow','visibility','color'].forEach(property=>header.style.removeProperty(property));
+        const brand=header.querySelector('.brand');
+        const companyBlock=header.querySelector('.company');
+        brand?.removeAttribute('style');
+        companyBlock?.removeAttribute('style');
+        header.querySelectorAll('*').forEach(element=>{
+          element.style.removeProperty('visibility');
+          element.style.removeProperty('color');
+          element.style.removeProperty('opacity');
+        });
+      }
+      doc.documentElement.removeAttribute('style');
+      doc.body.removeAttribute('style');
+    };
+    frame.contentWindow.onafterprint=()=>fitPdfPreview(frame);
     doc.documentElement.style.overflowX='hidden';
     doc.documentElement.style.width='100%';
     doc.body.style.overflowX='hidden';
