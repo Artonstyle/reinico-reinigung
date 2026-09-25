@@ -1057,11 +1057,13 @@ document.head.append(staffContractStyle);
   body{overflow-x:hidden;background:#edf3fa;padding-bottom:env(safe-area-inset-bottom)}
   .shell{display:block;min-height:100dvh}
   .side{position:sticky!important;top:0!important;z-index:9000;height:auto!important;padding:10px 10px 7px!important;box-shadow:0 3px 14px #071c3240}
-  .side .brand{display:flex;align-items:center;gap:8px;padding:0 8px 8px!important;font-size:18px}
+  .side .brand{display:flex;align-items:center;gap:8px;padding:7px 108px 7px 8px!important;font-size:18px}
   .side .brand small{display:inline;margin:0;font-size:9px}
-  .side .nav{display:flex!important;gap:5px;overflow-x:auto!important;overflow-y:hidden!important;padding:0 0 5px!important;scrollbar-width:none;overscroll-behavior-x:contain}
+  .mobile-menu-toggle{display:flex!important;position:absolute;right:9px;top:8px;z-index:2;width:44px;height:42px;min-height:42px!important;align-items:center;justify-content:center;border:1px solid #ffffff42;border-radius:9px;background:#fff;color:#12365d;font-size:23px;line-height:1}
+  .side .nav{display:none!important;gap:5px;max-height:calc(100dvh - 72px);overflow-x:hidden!important;overflow-y:auto!important;padding:8px 0 5px!important;border-top:1px solid #ffffff2b;scrollbar-width:thin;overscroll-behavior:contain}
+  .side.mobile-menu-open .nav{display:grid!important}
   .side .nav::-webkit-scrollbar{display:none}
-  .side .nav button{flex:0 0 auto!important;width:auto!important;min-height:42px;padding:9px 12px!important;white-space:nowrap}
+  .side .nav button{width:100%!important;min-height:44px;padding:10px 12px!important;white-space:normal;text-align:left}
   .side-foot{display:none!important}
   .main{width:100%;padding:15px 12px 28px!important}
   .top{display:flex;align-items:flex-start!important;gap:10px;flex-wrap:wrap;margin-bottom:16px}
@@ -1092,12 +1094,45 @@ document.head.append(staffContractStyle);
   .pipeline-board{grid-template-columns:repeat(7,82vw)!important}
   #applicantsPanel .job-settings-grid{grid-template-columns:1fr!important}
   #applicantsPanel .job-settings{padding:12px!important}
-  #reinicoLogout{top:6px!important;right:8px!important;min-height:34px!important}
+  #reinicoLogout{top:11px!important;right:62px!important;min-height:34px!important;height:36px!important}
 }
+@media (min-width:901px){.mobile-menu-toggle{display:none!important}}
 @media (max-width:430px){
   .stats,.schedule-summary{grid-template-columns:1fr!important}
   .main{padding-left:9px!important;padding-right:9px!important}
   .side .brand small{display:none}
 }
 </style>
+<script>
+(()=>{
+  const side=document.querySelector('.side');
+  const nav=document.getElementById('nav');
+  if(!side||!nav||document.querySelector('.mobile-menu-toggle'))return;
+  const button=document.createElement('button');
+  button.type='button';
+  button.className='mobile-menu-toggle';
+  button.setAttribute('aria-label','Menü öffnen');
+  button.setAttribute('aria-controls','nav');
+  button.setAttribute('aria-expanded','false');
+  button.textContent='☰';
+  side.insertBefore(button,nav);
+  const closeMenu=()=>{
+    side.classList.remove('mobile-menu-open');
+    button.setAttribute('aria-expanded','false');
+    button.setAttribute('aria-label','Menü öffnen');
+    button.textContent='☰';
+  };
+  button.addEventListener('click',()=>{
+    const open=side.classList.toggle('mobile-menu-open');
+    button.setAttribute('aria-expanded',String(open));
+    button.setAttribute('aria-label',open?'Menü schließen':'Menü öffnen');
+    button.textContent=open?'×':'☰';
+  });
+  nav.addEventListener('click',event=>{if(event.target.closest('button'))closeMenu()});
+  document.addEventListener('click',event=>{
+    if(matchMedia('(max-width:900px)').matches&&side.classList.contains('mobile-menu-open')&&!side.contains(event.target))closeMenu();
+  });
+  matchMedia('(min-width:901px)').addEventListener?.('change',event=>{if(event.matches)closeMenu()});
+})();
+</script>
 </body></html>
