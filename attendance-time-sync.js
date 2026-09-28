@@ -9,11 +9,12 @@ function renderConnectedAttendance(){
   const board=document.getElementById('attendanceBoard');if(!board)return;
   const start=new Date(attendanceCursor.getFullYear(),attendanceCursor.getMonth(),1),end=new Date(attendanceCursor.getFullYear(),attendanceCursor.getMonth()+1,1),days=[];for(let d=new Date(start);d<end;d.setDate(d.getDate()+1))days.push(new Date(d));
   document.getElementById('attendanceRange').textContent=start.toLocaleDateString('de-DE',{month:'long',year:'numeric'});
-  const planned=db.schedule.filter(x=>{const d=scheduleDate(x.datum);return d&&d>=start&&d<end}),timed=attendanceTimeData(start,end),timedGroups=[...timed.values()];
+  const absenceText=x=>(x.status||'')+' '+(x.ttigkeit||x.tätigkeit||x.taetigkeit||'');
+  const planned=db.schedule.filter(x=>{const d=scheduleDate(x.datum);return d&&d>=start&&d<end&&!/urlaub\s+abgelehnt/i.test(absenceText(x))}),timed=attendanceTimeData(start,end),timedGroups=[...timed.values()];
   const names=[...new Set([...db.staff.map(x=>x.name),...planned.map(x=>x.mitarbeiter),...timedGroups.map(x=>x.employee)].filter(Boolean))].sort((a,b)=>a.localeCompare(b,'de'));if(!names.length)names.push('Noch kein Mitarbeiter');
-  const sick=planned.filter(x=>/krank/i.test((x.status||'')+(x.tätigkeit||''))).length,vacation=planned.filter(x=>/urlaub/i.test((x.status||'')+(x.tätigkeit||''))).length;
+  const sick=planned.filter(x=>/krank/i.test(absenceText(x))).length,vacation=planned.filter(x=>/urlaub/i.test(absenceText(x))).length;
   const actualHours=timedGroups.reduce((sum,g)=>sum+g.result.work,0)/60,actualKeys=new Set(timedGroups.map(g=>g.employee.toLowerCase()+'|'+g.day));
-  const scheduledWork=planned.filter(x=>{const d=scheduleDate(x.datum),key=String(x.mitarbeiter||'').toLowerCase()+'|'+(d?scheduleIso(d):'');return d&&!actualKeys.has(key)&&!/krank|urlaub|frei/i.test((x.status||'')+(x.tätigkeit||''))});
+  const scheduledWork=planned.filter(x=>{const d=scheduleDate(x.datum),key=String(x.mitarbeiter||'').toLowerCase()+'|'+(d?scheduleIso(d):'');return d&&!actualKeys.has(key)&&!/krank|urlaub|frei/i.test(absenceText(x))});
   const workDays=new Set([...actualKeys,...scheduledWork.map(x=>String(x.mitarbeiter||'').toLowerCase()+'|'+scheduleIso(scheduleDate(x.datum)))]);
   document.getElementById('attendanceSummary').innerHTML=`<div><span>Arbeitstage</span><b>${workDays.size}</b></div><div><span>Kranktage</span><b>${sick}</b></div><div><span>Urlaubstage</span><b>${vacation}</b></div><div><span>Erfasste Arbeitsstunden</span><b>${actualHours.toLocaleString('de-DE',{minimumFractionDigits:0,maximumFractionDigits:2})}</b></div>`;
   const cols=`190px repeat(${days.length},minmax(30px,1fr))`,head='<div class="attendance-name">Mitarbeiter</div>'+days.map(day=>`<div class="attendance-day ${scheduleIso(day)===scheduleIso(new Date())?'today':''}">${day.getDate()}<small>${day.toLocaleDateString('de-DE',{weekday:'narrow'})}</small></div>`).join('');
@@ -21,4 +22,3 @@ function renderConnectedAttendance(){
   board.className='attendance-wrap';board.innerHTML=`<div class="attendance-legend"><span><i style="background:#1f64a5"></i>A = Eingestempelt</span><span><i style="background:#237d55"></i>✓ = Arbeitszeit abgeschlossen</span><span><i style="background:#c83b45"></i>K = Krank</span><span><i style="background:#d2820b"></i>U = Urlaub</span><span><i style="background:#5f6e82"></i>F = Frei</span></div><div class="attendance-grid" style="grid-template-columns:${cols}">${head}${rows}</div>`
 }
 renderAttendancePage=renderConnectedAttendance;if(current==='attendance')renderConnectedAttendance();
-
