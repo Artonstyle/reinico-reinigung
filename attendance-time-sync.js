@@ -10,7 +10,7 @@ function renderConnectedAttendance(){
   const start=new Date(attendanceCursor.getFullYear(),attendanceCursor.getMonth(),1),end=new Date(attendanceCursor.getFullYear(),attendanceCursor.getMonth()+1,1),days=[];for(let d=new Date(start);d<end;d.setDate(d.getDate()+1))days.push(new Date(d));
   document.getElementById('attendanceRange').textContent=start.toLocaleDateString('de-DE',{month:'long',year:'numeric'});
   const absenceText=x=>(x.status||'')+' '+(x.ttigkeit||x.tätigkeit||x.taetigkeit||'');
-  const planned=db.schedule.filter(x=>{const d=scheduleDate(x.datum);return d&&d>=start&&d<end&&!/urlaub\s+abgelehnt/i.test(absenceText(x))}),timed=attendanceTimeData(start,end),timedGroups=[...timed.values()];
+  const planned=db.schedule.filter(x=>{const d=scheduleDate(x.datum);return d&&d>=start&&d<end&&!/urlaub\s+(abgelehnt|storniert)/i.test(absenceText(x))}),timed=attendanceTimeData(start,end),timedGroups=[...timed.values()];
   const names=[...new Set([...db.staff.map(x=>x.name),...planned.map(x=>x.mitarbeiter),...timedGroups.map(x=>x.employee)].filter(Boolean))].sort((a,b)=>a.localeCompare(b,'de'));if(!names.length)names.push('Noch kein Mitarbeiter');
   const sick=planned.filter(x=>/krank/i.test(absenceText(x))).length,vacation=planned.filter(x=>/urlaub/i.test(absenceText(x))).length;
   const actualHours=timedGroups.reduce((sum,g)=>sum+g.result.work,0)/60,actualKeys=new Set(timedGroups.map(g=>g.employee.toLowerCase()+'|'+g.day)),absenceKeys=new Set(planned.filter(x=>/krank|urlaub|frei/i.test(absenceText(x))).map(x=>String(x.mitarbeiter||'').toLowerCase()+'|'+scheduleIso(scheduleDate(x.datum))));

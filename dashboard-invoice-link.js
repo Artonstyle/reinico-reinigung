@@ -5,7 +5,7 @@
     negotiating:()=>db.customers.filter(item=>/Verhandlung|Angebot gesendet/i.test(item.status||'')),
     tickets:()=>db.jobs.filter(item=>!/^erledigt$/i.test(item.status||'')),
     invoices:()=>db.invoices.filter(item=>!/bezahlt|storniert/i.test(item.status||'')),
-    vacations:()=>db.schedule.filter(item=>/urlaub/i.test((item.ttigkeit||item.tätigkeit||item.taetigkeit||'')+' '+(item.status||''))&&!/genehmigt|abgelehnt/i.test(item.status||''))
+    vacations:()=>db.schedule.filter(item=>/urlaub/i.test((item.ttigkeit||item.tätigkeit||item.taetigkeit||'')+' '+(item.status||''))&&!/genehmigt|abgelehnt|storniert/i.test(item.status||''))
   };
   const configs={
     'Neue Anfragen':{type:'newRequests',view:'customers',one:'Anfrage',many:'Anfragen'},
